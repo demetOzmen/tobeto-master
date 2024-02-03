@@ -1,0 +1,40 @@
+
+.ik-banner{
+    height: 70px;
+    background: #1e0f41;
+    width: -webkit-fill-available;
+
+}
+
+.ik-banner-top {
+    display: flex;
+    padding-top: 15px;
+    justify-content: space-between;
+}
+
+
+.ik-btn {
+    background: #00b078;
+    border: 3px solid #00b078;
+    border-radius: 2em;
+    padding: 0.5em 2em;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e0f41;
+
+}
+
+.text-ik {
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.fw-bold {
+    font-weight: 700 !important;
+}
+.ik-logo-platform {
+    background-image: url("../../../../public/wwwroot/ik-logo.svg");
+    background-repeat: no-repeat;
+    background-size: 100px;
+    padding-left: 100px;
+}
