@@ -10,3 +10,4 @@ export interface updateExperienceResponse {
     city: string;
     isContinue: boolean;
 }
+

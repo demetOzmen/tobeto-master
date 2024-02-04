@@ -6,3 +6,4 @@ export interface addSyncCourseContentResponse {
   startedDate: string;
   endedDate: string;
 }
+

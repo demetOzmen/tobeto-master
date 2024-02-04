@@ -7,3 +7,4 @@ export interface updateUserResponse {
     passwordHash: string;
     status: boolean;
 }
+

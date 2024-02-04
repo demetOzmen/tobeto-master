@@ -5,3 +5,4 @@ export interface addSyncCourseResponse {
   language: string;
   subtype: string;
 }
+

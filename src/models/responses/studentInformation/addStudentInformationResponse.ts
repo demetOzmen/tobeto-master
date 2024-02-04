@@ -8,3 +8,4 @@ export interface addStudentInformationResponse {
   country: string;
   addressDescription: string;
 }
+

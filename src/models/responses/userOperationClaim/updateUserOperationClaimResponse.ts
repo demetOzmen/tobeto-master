@@ -3,3 +3,4 @@ export interface updateUserOperationClaimResponse {
     userId: string;
     operationClaimId: number;
 }
+

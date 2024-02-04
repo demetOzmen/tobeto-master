@@ -1,4 +1,4 @@
-export interface updateSyncCourseDepartment {
+export interface updateSyncCourseDepartmentResponse {
     id: string;
     departmentId: string;
     syncCourseId: string;

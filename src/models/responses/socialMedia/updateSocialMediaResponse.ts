@@ -4,3 +4,5 @@ export interface updateSocialMediaResponse {
     socialMediaNameId: string;
     url: string;
 }
+
+

@@ -7,3 +7,4 @@ export interface updateSyncCourseContentResponse {
     startedDate: string;
     endedDate: string;
 }
+

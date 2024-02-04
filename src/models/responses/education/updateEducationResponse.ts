@@ -9,3 +9,4 @@ export interface updateEducationResponse {
     endedDate: string;
     isContinue: boolean;
 }
+

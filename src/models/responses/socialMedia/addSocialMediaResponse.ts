@@ -3,3 +3,5 @@ export interface addSocialMediaResponse {
   socialMediaNameId: string;
   url: string;
 }
+
+

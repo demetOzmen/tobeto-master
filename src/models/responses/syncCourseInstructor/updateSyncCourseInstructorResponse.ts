@@ -3,3 +3,4 @@ export interface updateSyncCourseInstructorResponse {
     syncCourseContentId: string;
     instructorId: string;
 }
+

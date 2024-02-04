@@ -6,3 +6,4 @@ export interface updateSyncCourseResponse {
     language: string;
     subtype: string;
 }
+

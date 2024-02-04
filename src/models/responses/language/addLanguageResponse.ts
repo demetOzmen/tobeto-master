@@ -3,3 +3,4 @@ export interface addLanguageResponse {
   languageLevelId: string;
   languageTypeId: string;
 }
+

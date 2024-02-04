@@ -3,3 +3,4 @@ export interface updateDistrictResponse {
     cityId: string;
     name: string;
 }
+
