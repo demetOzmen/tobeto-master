@@ -1,0 +1,37 @@
+.sorting-dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    margin-top: 4px ; 
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+  
+  .custom-sorting-dropdown {
+    color: gray;
+    width: 100%; /* Dropdown genişliği */
+    padding: 10px;
+    border-radius: 20px; /* Yuvarlak köşeler */
+    border: 1px solid #cccccc; /* Kenarlık rengi */
+    appearance: none; /* Platform özgü stil öğelerini kaldırır */
+    -webkit-appearance: none; /* Chrome ve Safari için */
+    -moz-appearance: none; /* Firefox için */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><polygon points="0,0 20,0 10,10" style="fill:black;"/></svg>'); /* Açılır ok ikonu */
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%; /* Açılır ok konumu */
+    background-size: 12px; /* Açılır ok boyutu */
+    cursor: pointer;
+    font-size: 14px; /* Yazı tipi boyutu */
+  }
+  
+  .custom-sorting-dropdown:focus {
+    border-color: #6666ff; /* Odaklandığında kenarlık rengi */
+    outline: none;
+  }
+  
+  /* İçerik alanının yüksekliğini ayarlamak */
+  .custom-sorting-dropdown option {
+    padding: 10px;
+  }
+  

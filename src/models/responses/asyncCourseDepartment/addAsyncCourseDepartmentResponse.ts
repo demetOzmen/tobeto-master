@@ -5,3 +5,4 @@ export interface addAsyncCourseDepartmentResponse {
   endedDate: string;
 }
 
+

@@ -1,5 +1,3 @@
-export interface addCategoryResponse <syncCourses,asyncCourses> {
+export interface addCategoryResponse {
   name: string;
-  syncCourses: syncCourses[];
-  asyncCourses: asyncCourses[];
 }

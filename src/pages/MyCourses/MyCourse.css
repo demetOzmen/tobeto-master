@@ -133,7 +133,7 @@
       
       .c-tab-list-item.active {
         border-bottom: 3px solid rgb(28, 28, 28);
-        opacity: 80%; /* Aktif tab için alt çizgi */
+        opacity: 80% ; /* Aktif tab için alt çizgi */
         color: black;
       }
       

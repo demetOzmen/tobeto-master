@@ -1,4 +1,4 @@
-export interface updateInstructorResponse {
+export interface getByIdInstructorResponse {
     id: string;
     userId: string;
     firstName: string;
@@ -9,4 +9,3 @@ export interface updateInstructorResponse {
     phoneNumber: string;
     about: string;
 }
-

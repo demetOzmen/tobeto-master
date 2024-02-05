@@ -14,6 +14,7 @@ import React from "react";
 import AnnouncementTypeList from "./pages/HomePage/AnnouncementTypeList";
 import Announcement from "./pages/HomePage/AnnouncementTest";
 import MyAnnouncement from "./pages/MyAnnouncement/MyAnnouncement";
+import MyCourse from "./pages/MyCourses/MyCourse";
 
 function App() {
   return (
@@ -83,7 +84,15 @@ function App() {
         }
       />
 
-
+<Route
+        path="/my-course"
+        element={
+          <>
+          <Navi />
+            <MyCourse/>
+          </>
+        }
+      />
       </Routes>
       </>
   );
