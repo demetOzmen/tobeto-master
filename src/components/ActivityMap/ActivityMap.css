@@ -1,0 +1,48 @@
+/* ActivityMap.css */
+
+.react-calendar-heatmap .color-empty {
+    fill: #CACACA; 
+    /* Boş tarihler için arka plan rengi */
+  }
+  
+  .react-calendar-heatmap .color-scale-1 {
+    fill: #BB66FF; /* Aktivite düzeyine göre renkler */
+  }
+  
+  .react-calendar-heatmap .color-scale-2 {
+    fill: #9933FF;
+  }
+  
+  .react-calendar-heatmap .color-scale-3 {
+    fill: #5C1F99;
+  }
+  
+  .react-calendar-heatmap .color-scale-4 {
+    fill: #361259;
+  }
+  
+  .react-calendar-heatmap .color-scale-5 {
+    fill: #BB66FF;
+  }
+  
+  /* Kareler arasında boşluk bırakmak için */
+  .react-calendar-heatmap .react-calendar-heatmap-square {
+    shape-rendering:geometricPrecision;
+    stroke-width: 10;
+
+  
+  }
+  
+  .react-calendar-heatmap{
+    height: 250px;
+  }
+
+  .react-calendar-heatmap rect {
+    width: 4px;
+    height: 4px;
+    
+  }
+
+.react-calendar-heatmap text {
+display: none;  }
+  

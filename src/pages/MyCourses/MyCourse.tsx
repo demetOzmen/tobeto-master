@@ -9,7 +9,7 @@ import "./MyCourse.css";
 
 
 function MyCourse() {
- /*Verileri alma 
+ /*Verileri alma */
  const [asyncCourse, setAsyncCourse] = useState<AsyncCourse[]>([]);
  const [loading, setLoading] = useState<boolean>(true);
  const [error, setError] = useState<string | null>(null);
@@ -47,7 +47,7 @@ const handleChange = (event:any) => {
 
 
 
-/*useEffect(() => {
+useEffect(() => {
     fetchAsyncCourses();
   }, []);
 
@@ -57,7 +57,7 @@ const handleChange = (event:any) => {
 
   if (error) {
     return <div>Hata: {error}</div>;
-  }*/
+  }
 
   return (
     <>
