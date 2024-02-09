@@ -215,4 +215,12 @@
 
 .actv-map{
     height: auto;
+    width: 110%;
+    padding: auto;
+}
+
+.edit-btn{
+  text-align: right;
+  margin-right: -5px;
+  margin-bottom: 10px;
 }

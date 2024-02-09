@@ -1,50 +1,53 @@
+// ActivityMap.tsx
 import React from 'react';
-import CalendarHeatmap from 'react-calendar-heatmap';
-import 'react-calendar-heatmap/dist/styles.css';
-import './ActivityMap.css';
+import './ActivityMap.css'; // Stillerinizi burada tanımlayın
 
-// Veri tipini tanımlayın
-interface IValue {
-  date: Date;
-  count: number;
+type ActivityLevel = 0 | 1 | 2 | 3 | 4;
+
+interface ActivityMapProps {
+  activityData: ActivityLevel[];
 }
 
-function MyHeatmap() {
-  const randomValues: IValue[] = getRange(200).map(index => {
-    return {
-      date: shiftDate(new Date(), -index),
-      count: getRandomInt(0, 5),
-    };
-  });
+
+// ActivityMap.tsx
+
+// ...diğer importlar
+
+const ActivityMap: React.FC<ActivityMapProps> = ({ activityData }) => {
+  // Aktivite seviyesine bağlı olarak tooltip metnini döndüren fonksiyon
+  const getActivityTooltip = (activityLevel: ActivityLevel): string => {
+    const activityDescriptions = [
+      "0 adet aktivite", // activityLevel 0 için
+      "1 adet aktivite", // activityLevel 1 için
+      "2 adet aktivite", // activityLevel 2 için
+      "3 adet aktivite", // activityLevel 3 için
+      "4 adet aktivite", // activityLevel 4 için
+      "5 adet aktivite", // activityLevel 5 için
+    ];
+
+    return activityDescriptions[activityLevel] || "Bilinmeyen aktivite seviyesi";
+  };
+
+  // Her satırdaki nokta sayısı
+  const dotsPerRow = 52;
 
   return (
-    <CalendarHeatmap
-      startDate={shiftDate(new Date(), -150)}
-      endDate={new Date()}
-      values={randomValues}
-      classForValue={(value: IValue | null) => {
-        if (!value || !value.count) {
-          return 'color-empty';
-        }
-        return `color-scale-${value.count}`;
-      }}
-    />
+<div className="activity-map">
+      {Array.from({ length: 7 }, (_, rowIndex) => (
+        <div key={rowIndex} className="activity-row">
+          {activityData
+            .slice(rowIndex * dotsPerRow, (rowIndex + 1) * dotsPerRow)
+            .map((level, index) => (
+              <div
+                key={index}
+                className={`activity-dot level-${level}`}
+                data-tooltip={getActivityTooltip(level)} // Tooltip metnini data-tooltip özelliği ile ayarlayın
+              />
+            ))}
+        </div>
+      ))}
+    </div>
   );
-}
+};
 
-// Yardımcı fonksiyonlar
-function getRange(count: number): number[] {
-  return Array.from({ length: count }, (_, i) => i);
-}
-
-function getRandomInt(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function shiftDate(date: Date, numDays: number): Date {
-  const newDate = new Date(date);
-  newDate.setDate(newDate.getDate() + numDays);
-  return newDate;
-}
-
-export default MyHeatmap;
+export default ActivityMap;

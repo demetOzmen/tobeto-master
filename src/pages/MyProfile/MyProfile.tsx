@@ -1,13 +1,58 @@
 import React from "react";
 import "./MyProfile.css";
 import { Row, Col, Container, Button } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import ActivityMap from "../../components/ActivityMap/ActivityMap";
+import EducationExperienceTimeline from "../../components/EducationExperienceTimeline/EducationExperienceTimeline";
+
+type ActivityLevel = 0 | 1 | 2 | 3 | 4;
 
 export default function MyProfile() {
+  const getActivityColor = (activityLevel: ActivityLevel): string => {
+    switch (activityLevel) {
+      case 0:
+        return "color-none";
+      case 1:
+        return "color-low";
+      case 2:
+        return "color-medium";
+      case 3:
+        return "color-high";
+      case 4:
+        return "color-very-high";
+      default:
+        return "color-none";
+    }
+  };
+
+  const totalDots = 7 * 52;
+  const activityData: ActivityLevel[] = Array(totalDots)
+    .fill(0)
+    .map((_, index) => {
+      // Burada her bir noktanın aktivite seviyesini belirleyebilirsiniz.
+      // Örnek olarak, tüm noktaları 0 aktivite seviyesi ile başlatıyoruz.
+      // Gerçek uygulamanızda, bu veriyi kullanıcı aktivitelerine göre ayarlayacaksınız.
+      return Math.floor(Math.random() * 5) as ActivityLevel; // 0-4 arası rastgele bir aktivite seviyesi
+    });
+
+  const educationExperienceItems = [
+    {
+      id: 1,
+      dateRange: "2010/2016",
+      institution: "İstanbul Üniversitesi",
+      description: "Bilişim ve öğretim teknolojileri eğitimi",
+      // ...diğer özellikler...
+    },
+  ];
+
   return (
     <div className="my-profile">
       <Container className="my-profile-con">
+        <div className="edit-btn">
+        <Link to="/my-profile/editprofile">
+          <img src="https://tobeto.com/edit2.svg"></img>
+        </Link>
+        </div>
         <Row>
           <Col md={4} sm={12}>
             <Row className=" sum-info-con">
@@ -132,18 +177,15 @@ export default function MyProfile() {
                     <Row>Herkes için Kodlama 2B Değerlendirme Sınavı</Row>
                     <Row>76.00</Row>
                   </Col>
-                  <Col
-                    md={4}
-                    style={{ fontSize: 13, alignItems: "center" }}
-                  >
-                    <br/>
+                  <Col md={4} style={{ fontSize: 13, alignItems: "center" }}>
+                    <br />
                     16-10-2023
                   </Col>
                 </Row>
               </div>
             </Row>
             <Row className="right-areas">
-            <div>
+              <div>
                 <Row className="about-me-r1">Yetkinlik Rozetlerim</Row>
                 <Row className="my-badges">
                   <div className="my-badge bordered"></div>
@@ -163,17 +205,32 @@ export default function MyProfile() {
                   <div className="my-badge bordered"></div>
                   <div className="my-badge bordered"></div>
                 </Row>
-            </div>
+              </div>
             </Row>
             <Row className="right-areas">
               <div>
                 <Row className="about-me-r1">Aktivite Haritam</Row>
                 <Row className="actv-map">
-                  <ActivityMap/>
+                  <Row className="actv-map">
+                    <ActivityMap activityData={activityData} />
+                  </Row>
                 </Row>
               </div>
             </Row>
-            <Row className="bordered">5</Row>
+            <Row className="right-areas">
+              <div>
+                <Row className="about-me-r1">
+                  Eğitim Hayatım ve Deneyimlerim
+                </Row>
+                <Row className="edu-exp-line">
+                  <div className="education-experience-section">
+                    <EducationExperienceTimeline
+                      items={educationExperienceItems}
+                    />
+                  </div>
+                </Row>
+              </div>
+            </Row>
           </Col>
         </Row>
       </Container>

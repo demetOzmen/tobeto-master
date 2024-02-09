@@ -1,48 +1,49 @@
 /* ActivityMap.css */
 
-.react-calendar-heatmap .color-empty {
-    fill: #CACACA; 
-    /* Boş tarihler için arka plan rengi */
-  }
-  
-  .react-calendar-heatmap .color-scale-1 {
-    fill: #BB66FF; /* Aktivite düzeyine göre renkler */
-  }
-  
-  .react-calendar-heatmap .color-scale-2 {
-    fill: #9933FF;
-  }
-  
-  .react-calendar-heatmap .color-scale-3 {
-    fill: #5C1F99;
-  }
-  
-  .react-calendar-heatmap .color-scale-4 {
-    fill: #361259;
-  }
-  
-  .react-calendar-heatmap .color-scale-5 {
-    fill: #BB66FF;
-  }
-  
-  /* Kareler arasında boşluk bırakmak için */
-  .react-calendar-heatmap .react-calendar-heatmap-square {
-    shape-rendering:geometricPrecision;
-    stroke-width: 10;
+.activity-map {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Satırlar arası boşluk */
+}
 
-  
-  }
-  
-  .react-calendar-heatmap{
-    height: 250px;
-  }
+.activity-row {
+  display: flex;
+  gap: 2px; /* Noktalar arası boşluk */
+}
 
-  .react-calendar-heatmap rect {
-    width: 4px;
-    height: 4px;
-    
-  }
+.activity-dot {
+  width: 10px; /* Nokta genişliği */
+  height: 10px; /* Nokta yüksekliği */
+  border-radius: 50%;
+  background-color: #e0e0e0; /* Varsayılan renk */
+}
 
-.react-calendar-heatmap text {
-display: none;  }
-  
+/* Aktivite seviyeleri için farklı renkler */
+.level-0 { background-color: #CACACA; }
+.level-1 { background-color: #BB66FF; }
+.level-2 { background-color: #9933FF; }
+.level-3 { background-color: #5C1F99; }
+.level-4 { background-color: #361259; }
+
+/* ActivityMap.css */
+
+
+.activity-dot:hover::after {
+  content: attr(data-tooltip); /* data-tooltip özelliğini kullanarak içerik ekleyin */
+  position: absolute; /* Tooltip'i konumlandırmak için */
+  white-space: nowrap; /* Metnin tek satırda kalmasını sağlar */
+  bottom: 100%; /* Noktanın hemen üstünde görünmesini sağlar */
+  left: 50%; /* Noktanın merkezine göre hizalar */
+  transform: translateX(-50%); /* Merkezi noktanın tam üzerine ayarlar */
+  background-color: rgb(65, 64, 64) ; /* Tooltip arkaplan rengi */
+  color: white; /* Metin rengi */
+  padding: 4px 8px; /* Padding */
+  border-radius: 4px; /* Kenar yuvarlaklığı */
+  font-size: 12px; /* Font boyutu */
+  z-index: 1000; /* Diğer öğelerin üstünde görünmesini sağlar */
+}
+
+.activity-dot:hover {
+  position: relative; /* :hover psödo-sınıfı için relative pozisyonlama */
+}

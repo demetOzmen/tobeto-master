@@ -19,6 +19,13 @@ import MyCourse from "./pages/MyCourses/MyCourse";
 import Connection from "./pages/Connection/Connection";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import EditMyInfo from "./pages/MyProfile/EditMyInfo/EditMyInfo";
+import Settings from "./pages/MyProfile/Settings/Settings";
+import Certificate from "./pages/MyProfile/Certificate/Certificate";
+import Competence from "./pages/MyProfile/Competence/Competence";
+import Education from "./pages/MyProfile/Education/Education";
+import Experience from "./pages/MyProfile/Experience/Experience";
+import Language from "./pages/MyProfile/Language/Language";
+import SocialMedia from "./pages/MyProfile/SocialMedia/SocialMedia";
 
 function App() {
   return (
@@ -129,33 +136,99 @@ function App() {
         />
 
         <Route
-          path="/my-profile/editprofile/settings"
+          path="/my-profile"
           element={
             <>
               <Navi />
-              <Platform />
+              <MyProfile />
               <Footer />
             </>
           }
         />
 
         <Route
-          path="/my-profile/editprofile"
+          path="/my-profile/my-info"
           element={
             <>
               <Navi />
-              <EditMyInfo/>
+              <EditMyInfo />
               <Footer />
             </>
           }
         />
 
-<Route
-          path="/my-profile"
+        <Route
+          path="/my-profile/editprofile/certificates"
           element={
             <>
               <Navi />
-              <MyProfile/>
+              <Certificate />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/my-profile/editprofile/competence"
+          element={
+            <>
+              <Navi />
+              <Competence />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/my-profile/editprofile/education"
+          element={
+            <>
+              <Navi />
+              <Education />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/my-profile/editprofile/experience"
+          element={
+            <>
+              <Navi />
+              <Experience />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/my-profile/editprofile/language"
+          element={
+            <>
+              <Navi />
+              <Language />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/my-profile/editprofile/social-media"
+          element={
+            <>
+              <Navi />
+              <SocialMedia />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/my-profile/editprofile/settings"
+          element={
+            <>
+              <Navi />
+              <Settings />
               <Footer />
             </>
           }
