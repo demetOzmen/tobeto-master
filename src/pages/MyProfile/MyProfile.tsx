@@ -49,7 +49,7 @@ export default function MyProfile() {
     <div className="my-profile">
       <Container className="my-profile-con">
         <div className="edit-btn">
-        <Link to="/my-profile/editprofile">
+        <Link to="/my-profile/my-info">
           <img src="https://tobeto.com/edit2.svg"></img>
         </Link>
         </div>
