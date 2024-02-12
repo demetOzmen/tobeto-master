@@ -57,12 +57,12 @@ export default function Certificate() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <Container className='bordered'>
+    <Container >
       <Row>
-        <Col className='bordered' md={3} sm={12}>
+        <Col  md={3} sm={12}>
           <Menu />
         </Col>
-        <Col className='bordered' md={9} sm={12}>
+        <Col md={9} sm={12}>
           <div className='dropzone-label'>Sertifikalarım</div>
           <div {...getRootProps()} className='dropzone'>
           <input {...getInputProps()} />

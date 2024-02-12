@@ -40,8 +40,8 @@ export default function Education() {
                 <Form.Group controlId="educationLevel">
                   <Form.Label className="edc-label">Eğitim Durumu*</Form.Label>
                   <Form.Control
+                    className="edc-input edc-select"
                     as="select"
-                    className="edc-select"
                     name="educationLevel"
                     value={education.educationLevel}
                     onChange={handleChange}
@@ -58,6 +58,7 @@ export default function Education() {
                 <Form.Group controlId="university">
                   <Form.Label className="edc-label">Üniversite*</Form.Label>
                   <Form.Control
+                    className="edc-input"
                     type="text"
                     name="university"
                     value={education.university}
@@ -68,23 +69,10 @@ export default function Education() {
             </Row>
             <Row>
               <Col md={6} sm={12}>
-                <Form.Group controlId="graduationYear">
-                  <Form.Label className="edc-label">Mezuniyet Yılı*</Form.Label>
-                  <Form.Control
-                    as="select"
-                    name="graduationYear"
-                    value={education.graduationYear}
-                    onChange={handleChange}
-                  >
-                    <option value="">Mezuniyet Yılınızı Seçiniz</option>
-                    {/* Generate graduation year options here */}
-                  </Form.Control>
-                </Form.Group>
-              </Col>
-              <Col md={6} sm={12}>
                 <Form.Group controlId="department">
                   <Form.Label className="edc-label">Bölüm*</Form.Label>
                   <Form.Control
+                    className="edc-input"
                     type="text"
                     name="department"
                     value={education.department}
@@ -92,21 +80,36 @@ export default function Education() {
                   />
                 </Form.Group>
               </Col>
-            </Row>
-            <Row>
               <Col md={6} sm={12}>
                 <Form.Group controlId="startYear">
                   <Form.Label className="edc-label">Başlangıç Yılı*</Form.Label>
                   <Form.Control
+                    className="edc-input"
                     type="text"
                     name="startYear"
                     value={education.startYear}
                     onChange={handleChange}
                   />
                 </Form.Group>
-
-                <Form.Group controlId="isContinuing">
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6} sm={12}>
+                <Form.Group controlId="graduationYear">
+                  <Form.Label className="edc-label">Mezuniyet Yılı*</Form.Label>
+                  <Form.Control
+                    className="edc-input"
+                    as="select"
+                    name="graduationYear"
+                    value={education.graduationYear}
+                    onChange={handleChange}
+                  >
+                    <option value="">Mezuniyet Yılınızı Seçiniz</option>
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="isContinuing" className="edc-check bordered">
                   <Form.Check
+                    className="edc-check-box"
                     type="checkbox"
                     name="isContinuing"
                     label="Devam Ediyorum"

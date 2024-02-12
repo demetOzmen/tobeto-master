@@ -41,7 +41,7 @@
     color: gray;
   }
   .edc-label{
-    margin-top:12px;
+    margin-top: 20px;
     color: gray;
     font-weight: 100;
     display: block;
@@ -58,8 +58,13 @@
     vertical-align: middle;
     background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024' fill='%23999'%3E%3Cpath d='M807.04 328.192l-295.04 295.616-295.04-295.616h590.08z'/%3E%3C/svg%3E") no-repeat right 0.75rem center/8px 10px;
     border: 1px solid #ced4da;
-    border-radius: 0.25rem;
     appearance: none;
+  }
+
+  .edc-input{
+    margin-top: -5px;
+    border-radius: 8px;
+    height: 50px;
   }
   
   /* Focus state for the select element */
@@ -81,3 +86,59 @@
     padding: 0.5rem;
   }
   
+  .edc-check{
+    margin-top: 5px;
+    margin-bottom:20px;
+    color: gray;
+    font-weight: lighter;
+    padding-left: 0px !important;
+  }
+
+
+.edc-check input[type="checkbox"] {
+  display: none;
+}
+
+
+.edc-check label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+}
+
+/* Özelleştirilmiş checkbox - Kapalı durum */
+.edc-check label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Checkbox işaretlendiğinde - Açık durum */
+.edc-check input[type="checkbox"]:checked + label::before {
+  background-color: blueviolet; /* Kırmızı arkaplan */
+  border-color: rgb(118, 11, 218); /* Kırmızı kenarlık */
+  box-shadow: 0 0 10px blueviolet;
+}
+
+/* İşaret simgesi (işaretli olduğunda) */
+.edc-check input[type="checkbox"]:checked + label::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.edc-check-box{
+  padding-left: 0px;
+}
