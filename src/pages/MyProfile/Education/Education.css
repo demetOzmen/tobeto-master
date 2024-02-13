@@ -276,14 +276,14 @@
 }
 @media (max-width: 768px) {
   .education-department {
-    padding-left: 30px; /* Sol padding'i kaldır */
+    padding-left: 30px;
     
   }
 }
 
 @media (max-width: 768px) {
   .ed-dep-head {
-    padding-left: 42px; /* Sol padding'i kaldır */
+    padding-left: 42px;
     
   }
 }

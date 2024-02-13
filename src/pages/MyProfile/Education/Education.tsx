@@ -123,12 +123,12 @@ export default function Education() {
   };
 
   return (
-    <Container className="edu-cont bordered">
+    <Container className="edu-cont ">
       <Row>
-        <Col className="bordered" md={3} sm={12}>
+        <Col md={3} sm={12}>
           <Menu />
         </Col>
-        <Col className="bordered" md={9} sm={12}>
+        <Col md={9} sm={12}>
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col md={6} sm={12}>

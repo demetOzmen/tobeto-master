@@ -120,7 +120,7 @@ export default function MyProfile() {
             <Row className=" my-competence-sum">
               <div>
                 <Row className="about-me-r1">Yetkinliklerim</Row>
-                <Row className="cpt-rows bordered"> C#</Row>
+                <Row className="cpt-rows"> C#</Row>
                 <Row className="cpt-rows">C#</Row>
                 <Row className="cpt-rows">C#</Row>
               </div>
@@ -131,7 +131,7 @@ export default function MyProfile() {
                 <Row className="my-lang-rows">
                   <Col md={2}>
                     <img
-                      className="l-img bordered"
+                      className="l-img"
                       src="https://tobeto.com/globe.svg"
                     ></img>
                   </Col>
@@ -188,6 +188,10 @@ export default function MyProfile() {
               <div>
                 <Row className="about-me-r1">Yetkinlik Rozetlerim</Row>
                 <Row className="my-badges">
+                  <div className="my-badge bordered"></div>
+                  <div className="my-badge bordered"></div>
+                  <div className="my-badge bordered"></div>
+                  <div className="my-badge bordered"></div>
                   <div className="my-badge bordered"></div>
                   <div className="my-badge bordered"></div>
                   <div className="my-badge bordered"></div>
