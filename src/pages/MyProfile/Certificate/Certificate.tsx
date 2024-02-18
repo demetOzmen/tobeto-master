@@ -1,11 +1,11 @@
-import React, {  useState,  useCallback } from 'react';
+import React, { useEffect, useState,  useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import { Container, Row, Col, Button, Table } from 'react-bootstrap';
 import Menu from '../Menu/Menu';
 import './Certificate.css';
-import { Certificate } from "../../models/responses/certificate/getAllCertificateResponse";
-import certificateService from "../../services/certificateService";
+import { Certificate as CertificateModel} from "../../../models/responses/certificate/getAllCertificateResponse";
+import certificateService from "../../../services/certificateService";
 
 
 interface UploadedFile {
@@ -16,6 +16,24 @@ interface UploadedFile {
 }
 
 export default function Certificate() {
+  const [certificates, setCertificates] = useState<CertificateModel[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const userId = "551ad870-f5d0-49c4-17ca-08dc24aa962b";
+  const fetchCertificates = async () => {
+    try {
+      const response = await certificateService.getAll(userId);
+      setCertificates(response.data.items);
+      console.log(response.data.items)
+    } catch (error: any) {
+      console.error("Veri çekme hatası:", error.message);
+      setError("Veri çekme işlemi başarısız oldu");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Dosya bırakıldığında çalışacak fonksiyon
   const onDrop = useCallback((acceptedFiles:any) => {
     // Dosya yükleme işlemi burada yapılacak
@@ -59,6 +77,12 @@ export default function Certificate() {
   // useDropzone hook'u ile gerekli prop'ları alıyoruz
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+
+  useEffect(() => {
+    fetchCertificates();
+  }, []); // Bağımlılık dizisi boş olduğu için bileşen yüklendiğinde bir kez çalışır
+
+
   return (
     <Container >
       <Row>
@@ -80,19 +104,19 @@ export default function Certificate() {
               <tr>
                 <th>Dosya Adı</th>
                 <th>Türü</th>
-                <th>Tarih</th>
+                {/*<th>Tarih</th>*/}
                 <th>İşlem</th>
               </tr>
             </thead>
             <tbody>
-              {uploadedFiles.map((file, index) => (
-                <tr key={index}>
-                  <td>{file.name}</td>
-                  <td>{file.type}</td>
-                  <td>{file.lastModifiedDate}</td>
+              {certificates.map((certificate) => (
+                <tr key={certificate.id}>
+                  <td>{certificate.name}</td>
+                  <td>{certificate.url}</td>
+                  {/*<td>{file.lastModifiedDate}</td>*/}
                   <td>
                     {/* İşlem butonları burada olabilir, örneğin silme butonu */}
-                    <Button variant="danger" onClick={() => handleDelete(index)}>Sil</Button>
+                    {/*<Button variant="danger" onClick={() => handleDelete(certificate.id)}>Sil</Button>*/}
                   </td>
                 </tr>
               ))}

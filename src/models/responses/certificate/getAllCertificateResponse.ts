@@ -6,8 +6,12 @@ export interface Certificate {
 }
 
 export interface getAllCertificateResponse {
-  id: string;
-  studentId: string;
-  url: string;
-  name: string;
+  from: number;
+  index: number;
+  size: number;
+  count: number;
+  pages: number;
+  items: Certificate[];
+  hasPrevious: boolean;
+  hasNext: boolean;
 }
