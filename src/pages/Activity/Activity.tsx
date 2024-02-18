@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons"; // tıklanmamış için
 import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons"; // tıklanmış için
@@ -18,25 +18,88 @@ import "./Activity.css";
 import Accordion from "./ListAccordion/ListAccordion";
 import OffCanvas from "./OffCanvas/OffCanvas";
 import { Row, Col } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import { VideoDetails } from "../../components/Activity/VideoDetails";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  toggleLike,
+  toggleBookmark,
+  setProgress,
+  setActiveTab,
+  setAccordionData,
+  setSubtypes,
+  setNames,
+  setVideos,
+  setSelectedVideo,
+} from "../../store/reducers/activityReducer";
+import { RootState } from "../../store/configureStore";
 
 export default function Activity() {
-  const [liked, setLiked] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [activeTab, setActiveTab] = useState("icerik");
+  const liked = useSelector((state: RootState) => state.activity.liked);
+  const isBookmarked = useSelector(
+    (state: RootState) => state.activity.isBookmarked
+  );
+  const progress = useSelector((state: RootState) => state.activity.progress);
+  const activeTab = useSelector((state: RootState) => state.activity.activeTab);
+  const accordionData = useSelector(
+    (state: RootState) => state.activity.accordionData
+  );
+  const subtypes = useSelector((state: RootState) => state.activity.subTypes);
+  const names = useSelector((state: RootState) => state.activity.names);
+  const videos = useSelector((state: RootState) => state.activity.videos);
+  const selectedVideo = useSelector(
+    (state: RootState) => state.activity.selectedVideo
+  );
+
+  const dispatch = useDispatch();
+  const { courseID } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Apı request to fetch related content
+        const response = await axios.get(
+          `https://localhost:44340/api/AsyncCourseContents/GetByAsyncCourseId?id=${courseID}`
+        );
+        const data = response.data; // Get the response data
+        if (data && data.items) {
+          const itemsArray = data.items;
+
+          dispatch(setAccordionData(itemsArray));
+          dispatch(setNames(itemsArray.map((item: any) => item.name)));
+          dispatch(setSubtypes(itemsArray.map((item: any) => item.subtype)));
+          dispatch(
+            setSelectedVideo(itemsArray.map((item: any) => item.selectedVideo))
+          );
+          dispatch(setSelectedVideo(itemsArray.map((item: any) => item.url)));
+        }
+        // Log the fetched data
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData(); // Call the async function
+  }, [courseID]);
 
   // Like butonunun toggle fonksiyonu
-  const toggleLike = () => {
-    setLiked(!liked);
+  const handleLikeClick = () => {
+    dispatch(toggleLike());
   };
 
   // Bookmark butonunun toggle fonksiyonu
-  const toggleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
+  const handleBookmarkClick = () => {
+    dispatch(toggleBookmark());
   };
 
-  const handleTabClick = (tab:any) => {
-    setActiveTab(tab);
+  const handleTabClick = (tab: any) => {
+    dispatch(setActiveTab(tab));
+  };
+  const handleAccordionContentClick = (index: any) => {
+    dispatch(setSelectedVideo(videos[index]));
   };
   // İlerleme çubuğunun simülasyonu için useEffect hook'u
   /* useEffect(() => {
@@ -65,7 +128,8 @@ export default function Activity() {
         <div className="col-md-1 col-sm-0 ">
           <img
             src="https://lms.tobeto.com/tobeto/eep/common_show_picture_cached.aspx?pQS=eaAjNZ0uaOFNO7nf8wuXoA%3d%3d"
-            className="edu-img" alt=""
+            className="edu-img"
+            alt=""
           ></img>
         </div>
         <div className="col-lg-11 col-md-10 col-sm-9 col-12 ">
@@ -73,7 +137,8 @@ export default function Activity() {
             <div className="row">
               <div className="col-sm-12 col-xs-12 col-md-8 edu-title ">
                 <div className="edu-title-row">
-                  .NET & React Fullstack | Öğrenme Yolculuğu
+                  .NET & React Fullstack | Öğrenme Yolculuğu <br></br>
+                  id
                   {/*<span className="tag-blue">GELİŞİM YOLCULUĞU</span>*/}
                 </div>
               </div>
@@ -81,14 +146,14 @@ export default function Activity() {
                 <span className="score-badge">77.6 PUAN</span>
                 <button
                   className={`like-button ${liked ? "liked" : ""}`}
-                  onClick={toggleLike}
+                  onClick={handleLikeClick}
                 >
                   <span className="heart-icon">{liked ? "❤️" : "🤍"}</span>
                   <span className="like-count">{liked ? 51 : 50}</span>
                 </button>
                 <button
                   className={`bookmark-icon ${isBookmarked ? "active" : ""}`}
-                  onClick={toggleBookmark}
+                  onClick={handleBookmarkClick}
                   aria-label={
                     isBookmarked ? "Remove from bookmarks" : "Add to bookmarks"
                   }
@@ -157,107 +222,29 @@ export default function Activity() {
                 <div>
                   <div className="icerik-detail">
                     <Row className="justify-content-end flex-row-reverse">
-                      <Col className="custom-right">
-                        <div className="video-area-cont">
-                          <Row className="video-area">
-                            <div className="video-container">
-                              <iframe
-                                src="https://www.youtube.com/embed/Hgqqoycoh9c"
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                              ></iframe>
-                            </div>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <Row className="video-name">
-                                ASPNET Core ve ASPNET Tarihçesi
-                              </Row>
-                              <Row className="video-time-detail">
-                                <Col> Video - 4 dk</Col>
-                                <Col>100 puan</Col>
-                                <Col className="ok-icon">
-                                  {" "}
-                                  <FontAwesomeIcon icon={faThumbsUp} />
-                                  &nbsp;Tebrikler,&nbsp;&nbsp;&nbsp;tamamladın!
-                                </Col>
-                              </Row>
-                            </Col>
-                            <Col className="video-detail-btn">
-                              <OffCanvas
-                                /*className={
-                                  isOffCanvasOpen ? "offcanvas-open" : ""
-                                }
-                                showButton={showButton}
-                                setShowButton={setShowButton}*/
-                              />
-                            </Col>
-                          </Row>
-                        </div>
-                      </Col>
+                      <VideoDetails />
+                      {/* Buraya aşağıda listeleyeceğimiz kurslardan hangisine tıklarsak onun id sini göndereceğiz 
+                          VideoDetails içinde o id yi yakalayıp getbyid olan apiye istek atacağız
+                          gelen verideki bilgileri o kısıma yazdıracağız
+                      */}
                       <Col className="custom-left">
                         <div className="scrollable-div">
-                          <Accordion title="ASPNET Core MVC Basic">
-                            <div className="accordion-subtitle">
-                              ASPNET Core ve ASPNET Tarihçesi
-                            </div>
-                            <p className="subtitle-detail">Video - 4 dk</p>
-                            <div className="accordion-subtitle">
-                              React2 Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi2...</p>
-                          </Accordion>
-                          <Accordion title="ReactJS Basic">
-                            <div className="accordion-subtitle">
-                              React Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi...</p>
-                            <div className="accordion-subtitle">
-                              React2 Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi2...</p>
-
-                            {/* Diğer alt başlıklar */}
-                          </Accordion>
-                          {/* Diğer ana başlıklar */}
-                          <Accordion title="ReactJS Basic">
-                            <div className="accordion-subtitle">
-                              React Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi...</p>
-                            <div className="accordion-subtitle">
-                              React2 Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi2...</p>
-
-                            {/* Diğer alt başlıklar */}
-                          </Accordion>
-                          <Accordion title="ReactJS Basic">
-                            <div className="accordion-subtitle">
-                              React Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi...</p>
-                            <div className="accordion-subtitle">
-                              React2 Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi2...</p>
-
-                            {/* Diğer alt başlıklar */}
-                          </Accordion>
-                          <Accordion title="ReactJS Basic">
-                            <div className="accordion-subtitle">
-                              React Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi...</p>
-                            <div className="accordion-subtitle">
-                              React2 Nedir?
-                            </div>
-                            <p className="subtitle-detail">Detay bilgisi2...</p>
-
-                            {/* Diğer alt başlıklar */}
-                          </Accordion>
+                          {names.map((name: any, index: any) => (
+                            <Accordion
+                              key={index}
+                              title={name}
+                              className="accordion-header"
+                            >
+                              <div
+                                className="accordion-content"
+                                onClick={() =>
+                                  handleAccordionContentClick(subtypes[index])
+                                }
+                              >
+                                {subtypes[index]}
+                              </div>
+                            </Accordion>
+                          ))}
                         </div>
                       </Col>
                     </Row>

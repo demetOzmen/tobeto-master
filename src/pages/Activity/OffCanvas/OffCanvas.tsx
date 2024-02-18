@@ -75,7 +75,7 @@ const OffCanvas = () => {
                       width: "320px",
                     }}
                   >
-                    .NET & React Fullstack | Öğrenme Yolculuğu{" "}
+                    name{" "}
                   </div>
                   <div className="row  edu-detail-row-c">
                     <div
@@ -115,7 +115,7 @@ const OffCanvas = () => {
                         width: "45px",
                       }}
                     >
-                      1dk
+                      title
                     </div>
                     <div
                       className="row  time-c"
@@ -142,14 +142,14 @@ const OffCanvas = () => {
                         width: "45px",
                       }}
                     >
-                      157
+                      157 {/*kalsın şimdilik */}
                     </div>
                     <button
                       className={`like-button ${liked ? "liked" : ""}`}
                       onClick={toggleLike}
                     >
-                      <span className="heart-icon">{liked ? "❤️" : "🤍"}</span>
-                      <span className="like-count">{liked ? 51 : 50}</span>
+                      <span className="heart-icon">{liked ? "❤️" : "🤍"}</span>{/*kalsın şimdilik */}
+                      <span className="like-count">{liked ? 51 : 50}</span>{/*kalsın şimdilik */}
                     </button>
                   </div>
                 </div>
@@ -178,7 +178,7 @@ const OffCanvas = () => {
                       </td>
                       <td>Kategori</td>
                       <td className="c-edu-detail">
-                        İş'te Mükemmellik / Programlama / Programlama
+                        category
                       </td>
                     </tr>
                     <tr>
@@ -186,21 +186,21 @@ const OffCanvas = () => {
                         <FontAwesomeIcon icon={faGlobe} className="icon" />
                       </td>
                       <td>Dili</td>
-                      <td className="c-edu-detail">Türkçe</td>
+                      <td className="c-edu-detail">language</td>
                     </tr>
                     <tr>
                       <td>
                         <FontAwesomeIcon icon={faFileAlt} className="icon" />
                       </td>
                       <td>Alt Tip</td>
-                      <td className="c-edu-detail">Konu Uzmanı Videosu</td>
+                      <td className="c-edu-detail">subtype</td>
                     </tr>
                     <tr>
                       <td>
                         <FontAwesomeIcon icon={faIndustry} className="icon" />
                       </td>
                       <td>Üretici Firma</td>
-                      <td className="c-edu-detail">Enocta</td>
+                      <td className="c-edu-detail">producer</td>
                     </tr>
                   </table>
                 </Row>
@@ -217,9 +217,7 @@ const OffCanvas = () => {
                   textAlign: "left",
                 }}
               >
-                Bu video, Veri Tabanı ve Erişimi: Microsoft SQL Server Database
-                Management eğitiminde aktarılan konular hakkında toparlayıcı ve
-                özet bilgilerin yer aldığı bir kapanış videosudur.
+                description
               </Row>
             </Row>
 

@@ -4,6 +4,9 @@ import axios from 'axios';
 import { Container, Row, Col, Button, Table } from 'react-bootstrap';
 import Menu from '../Menu/Menu';
 import './Certificate.css';
+import { Certificate } from "../../models/responses/certificate/getAllCertificateResponse";
+import certificateService from "../../services/certificateService";
+
 
 interface UploadedFile {
   name: string;

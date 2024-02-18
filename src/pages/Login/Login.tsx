@@ -1,8 +1,8 @@
 import React, { useState, FormEvent } from "react";
 import "./Login.css";
-import { Button, Col, Image, Row } from "react-bootstrap";
+import { Button, Col, Image, Row} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link  } from "react-router-dom";
 import { loginUser, UserCredentials } from "../../store/reducers/userReducer";
 import tokenService from "../../core/services/tokenService";
 
@@ -11,7 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   // Redux state
-  const { loading, error } = useSelector((state:any) => state.user);
+  const { loading, error } = useSelector((state: any) => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function Login() {
       password,
     };
 
-    dispatch(loginUser(userCredentials) as any).then((result:any) => {
+    dispatch(loginUser(userCredentials) as any).then((result: any) => {
       if (result.payload) {
         setEmail("");
         setPassword("");
@@ -36,8 +36,8 @@ export default function Login() {
   return (
     <>
       <Row className="p-5 mb-5">
-        <Col lg={2} md={12} sm={12}></Col>
-        <Col lg={4} md={12} sm={12}>
+        <Col  className="mx-2" lg={2} md={12} sm={12}></Col>
+        <Col  className="mx-2" lg={4} md={12} sm={12}>
           <div className="login-main">
             <div className="login card-login-animation">
               <div className="form">
@@ -77,10 +77,10 @@ export default function Login() {
             </div>
           </div>
         </Col>
-        
-        <Col lg={3} md={6} sm={12}>
-          <div className="login card-right">
-            <div className="form">
+
+        <Col  className="mx-2" lg={3} md={6} sm={12}>
+          <div className="login card-right ">
+            <div className="form login-card-right-in">
               <div className="text-center mt-5">
                 <Image
                   src="https://tobeto.com/_next/static/media/ik-logo-dark.7938c0de.svg"
@@ -90,7 +90,9 @@ export default function Login() {
                 <div className="right-card-bottom-logo">
                   <span className="rigth-card-job">Aradığın "İş" Burada!</span>
                   <br />
+                  <Link to="/register">
                   <Button className="btn-sm">Başvur</Button>
+                  </Link>
                 </div>
               </div>
             </div>

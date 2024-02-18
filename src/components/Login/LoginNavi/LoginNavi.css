@@ -33,8 +33,10 @@
     font-weight: 700 !important;
 }
 .ik-logo-platform {
-    background-image: url("../../../../public/wwwroot/ik-logo.svg");
-    background-repeat: no-repeat;
-    background-size: 100px;
-    padding-left: 100px;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+.bordered{
+    border: 1px solid red;
 }

@@ -488,3 +488,12 @@
   .custom-left {
     text-align: left; /* İçeriği sola yaslar */
   }
+
+  .left-menu-link-import{
+    color: black !important;
+    text-decoration: none;
+  }
+  .left-menu-link-import :hover{
+    background-color:rgba(222, 217, 217,0.5);
+    border-radius: 10px;
+  }

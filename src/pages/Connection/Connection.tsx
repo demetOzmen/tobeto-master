@@ -41,7 +41,7 @@ function Connection() {
     <div className="all">
       <Col md={11} className="container-cn">
         <div className="row">
-          <Col md={5} sm={12} xs={12} className="bordered connection-left">
+          <Col md={5} sm={12} xs={12} className=" connection-left">
             <div>
               <button className="top-span">İletişime Geçin</button>
             </div>
@@ -100,7 +100,7 @@ function Connection() {
             </Row>
           </Col>
 
-          <Col md={5} sm={12} xs={12} className="bordered connection-right">
+          <Col md={5} sm={12} xs={12} className="connection-right">
             <div>
               <button className="top-span">Mesaj Bırakın</button>
             </div>

@@ -340,7 +340,6 @@ export default function Experience() {
                         ? exp.endDate.toLocaleDateString("tr-TR")
                         : "???"}
                     </div>
-                    {/* Burada badge eklenebilir */}
                   </div>
                   <Row>
                     <br></br>

@@ -6,17 +6,17 @@ import { Route, Routes } from "react-router-dom";
 import Platform from "./pages/Platform/Platform";
 import Catalog from "./pages/Catalog/Catalog";
 import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
 import LoginNavi from "./components/Login/LoginNavi/LoginNavi";
 import LoginFooter from "./components/Login/LoginFooter/LoginFooter";
 import About from "./pages/About/About";
 import Activity from "./pages/Activity/Activity";
 import React from "react";
-import AnnouncementTypeList from "./pages/HomePage/AnnouncementTypeList";
-import Announcement from "./pages/HomePage/AnnouncementTest";
 import MyAnnouncement from "./pages/MyAnnouncement/MyAnnouncement";
 import MyCourse from "./pages/MyCourses/MyCourse";
+import Register from "./pages/Register/Register";
 import Connection from "./pages/Connection/Connection";
+import CalendarComponent from "./pages/HomePage/CalendarTest";
+import Date from "./pages/Date/Date";
 import MyProfile from "./pages/MyProfile/MyProfile";
 import EditMyInfo from "./pages/MyProfile/EditMyInfo/EditMyInfo";
 import Settings from "./pages/MyProfile/Settings/Settings";
@@ -27,22 +27,35 @@ import Experience from "./pages/MyProfile/Experience/Experience";
 import Language from "./pages/MyProfile/Language/Language";
 import SocialMedia from "./pages/MyProfile/SocialMedia/SocialMedia";
 
+
+
 function App() {
   return (
     <>
+    {/*Test */}
       <Routes>
         <Route
           path="/"
           element={
             <>
               <Navi />
-              <Announcement />
-
-              <AnnouncementTypeList />
+              <Platform/>
               <Footer />
             </>
           }
         />
+{/*--Test--*/}
+<Route
+          path="/dates"
+          element={
+            <>
+              <Navi />
+              <Date/>
+              <Footer />
+            </>
+          }
+        />
+
 
         <Route
           path="/platform"
@@ -65,7 +78,8 @@ function App() {
             </>
           }
         />
-        <Route
+
+<Route
           path="/register"
           element={
             <>
@@ -75,7 +89,8 @@ function App() {
             </>
           }
         />
-        <Route
+
+<Route
           path="/connection"
           element={
             <>
@@ -85,6 +100,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/about"
           element={
@@ -108,7 +124,7 @@ function App() {
         />
 
         <Route
-          path="/activity"
+          path="/activity/:courseID"
           element={
             <>
               <Activity />
@@ -124,9 +140,8 @@ function App() {
             </>
           }
         />
-
-        <Route
-          path="/my-course"
+                <Route
+          path="/egitimlerim"
           element={
             <>
               <Navi />
@@ -135,7 +150,7 @@ function App() {
           }
         />
 
-        <Route
+<Route
           path="/my-profile"
           element={
             <>
@@ -233,6 +248,7 @@ function App() {
             </>
           }
         />
+
       </Routes>
     </>
   );

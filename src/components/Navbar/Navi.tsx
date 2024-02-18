@@ -18,7 +18,7 @@ export default function Navi() {
             <NavLink to="/platform" className="nav-link p-4">
               Anasayfa
             </NavLink>
-            <NavLink to="/profile" className="nav-link p-4">
+            <NavLink to="/my-profile" className="nav-link p-4">
               Profilim
             </NavLink>
             <NavLink to="/" className="nav-link p-4">

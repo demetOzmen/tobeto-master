@@ -14,7 +14,8 @@ export default function LoginNavi() {
             <div className="container">
               <div className="ik-banner-top">
                 <div>
-                  <span className="ik-logo-platform"></span>
+                  <Link to="/istanbul-kodluyor">
+                  <img src="https://tobeto.com/_next/static/media/ik-logo-light.ace655db.svg" className="ik-logo-platform bordered"></img></Link>
                 </div>
                 <div className="mobile-none">
                   <span className="text-ik fw-bold">
@@ -34,12 +35,14 @@ export default function LoginNavi() {
         <Col lg={12} md={8} sm={4}>
           <Navbar expand="sm" className="bg-dark">
             <Container>
-              <Image
+              <Link to="/platform" >            
+               <Image
                 src="https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FTebeto-logo-yatay-beyaz.8c2d6927.png&w=256&q=75"
                 width="100px"
-                className="m-3"
+                className="m-3 bordered"
                 fluid
               />
+              </Link> 
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
               <Navbar.Collapse id="basic-navbar-nav">
@@ -60,9 +63,7 @@ export default function LoginNavi() {
                     Tobeto'da Bu Ay
                   </Link>
 
-                  <Link to="/platform" className="nav-link p-4 text-white">
-                    tobeto
-                  </Link>
+
                 </Nav>
               </Navbar.Collapse>
             </Container>
