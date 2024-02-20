@@ -18,7 +18,7 @@ class AsyncCourseService extends BaseService<
 > {
 	constructor() {
 		super();
-		this.apiUrl = BASE_API_URL + "MyCourses";
+		this.apiUrl = BASE_API_URL + "AsyncCourses";
 	}
 }
 var asyncCourseService = new AsyncCourseService();

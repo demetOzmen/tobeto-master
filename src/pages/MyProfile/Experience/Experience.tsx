@@ -186,12 +186,12 @@ export default function Experience() {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-    <Container className="bordered">
+    <Container >
       <Row>
-        <Col className="bordered" md={3} sm={12}>
+        <Col  md={3} sm={12}>
           <Menu />
         </Col>
-        <Col className="bordered experience-cont" md={9} sm={12}>
+        <Col className="experience-cont" md={9} sm={12}>
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col md={6} sm={12}>

@@ -39,4 +39,62 @@
 }
 .bordered{
     border: 1px solid red;
-}
+}.wave-button {
+    padding: 10px 25px;
+    border: 5px solid transparent;
+    background-color: rgb(50, 50, 50); /* Button background color */
+    background-image: linear-gradient(rgb(89, 88, 88), rgb(0, 0, 0));
+    color: white;
+    font-size: 14px;
+    border-radius: 10px; 
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.5s;
+  }
+  
+  /* Animation for the border */
+  @keyframes wave {
+    0% {
+      border-image: linear-gradient(to left,  purple,rgb(246, 246, 108),cyan ) 1;
+    }
+    100% {
+      border-image: linear-gradient(to right, purple, rgb(246, 246, 108), cyan ) 1;
+    }
+  }
+  
+  /* Apply the wave animation to the border */
+  .wave-button {
+    animation: wave 2s linear infinite;
+    border-radius: 24px;
+  }
+  
+  .wave-button:hover {
+    color: black; /* Hover text color */
+    background-image: linear-gradient(to right, purple 0%, cyan 50%, purple 100%);
+    background-size: 200% auto;
+    background-position: 100% -100%;
+    transition: color 0.5s;
+  }
+  
+  /* Continue the wave animation on hover, now filling the button */
+  .wave-button:hover {
+    animation: gradient 3s linear infinite;
+  }
+  
+  /* Active/Push down effect */
+  .wave-button:active {
+    transform: translateY(4px);
+  }
+  
+  /* Ensure the gradient animation runs over the button on hover */
+  @keyframes gradient {
+    0% {
+      background-position: 200% center;
+    }
+    100% {
+      background-position: -200% center;
+    }
+  }

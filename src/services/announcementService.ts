@@ -1,7 +1,7 @@
 
 import { BaseService } from "../core/services/baseService";
 import { BASE_API_URL } from "../environment/environment";
-import { AddAnnouncementRequest } from "../models/requests/announcement/addAnnouncementRequest";
+import { AddAnnouncementRequest } from "../models/requests/announcement/AddAnnouncementRequest";
 import { UpdateAnnouncementRequest } from "../models/requests/announcement/UpdateAnnouncementRequest";
 import { AddAnnouncementResponse } from "../models/responses/announcement/AddAnnouncementResponse";
 import { GetAnnouncementDetailResponse } from "../models/responses/announcement/GetAnnouncementDetailResponse";
@@ -21,6 +21,7 @@ class AnnouncementService extends BaseService<
 		super();
 		this.apiUrl = BASE_API_URL + "Announcements";
 	}
+	
 }
 var announcementService = new AnnouncementService();
 export default announcementService;

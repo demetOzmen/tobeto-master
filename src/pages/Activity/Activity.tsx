@@ -1,8 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons"; // tıklanmamış için
-import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons"; // tıklanmış için
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons"; //tamamladın ikonu
+import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons"; // tıklanmış için  
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTasks } from "@fortawesome/free-solid-svg-icons";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
@@ -34,46 +34,45 @@ import {
   setVideos,
   setSelectedVideo,
 } from "../../store/reducers/activityReducer";
-import { RootState } from "../../store/configureStore";
+import { ActivityAbout } from "../../components/Activity/ActivityAbout";
 
 export default function Activity() {
-  const liked = useSelector((state: RootState) => state.activity.liked);
-  const isBookmarked = useSelector(
-    (state: RootState) => state.activity.isBookmarked
-  );
-  const progress = useSelector((state: RootState) => state.activity.progress);
-  const activeTab = useSelector((state: RootState) => state.activity.activeTab);
+  const liked = useSelector((state: any) => state.activity.liked);
+  const isBookmarked = useSelector((state: any) => state.activity.isBookmarked);
+  const progress = useSelector((state: any) => state.activity.progress);
+  const activeTab = useSelector((state: any) => state.activity.activeTab);
   const accordionData = useSelector(
-    (state: RootState) => state.activity.accordionData
+    (state: any) => state.activity.accordionData
   );
-  const subtypes = useSelector((state: RootState) => state.activity.subTypes);
-  const names = useSelector((state: RootState) => state.activity.names);
-  const videos = useSelector((state: RootState) => state.activity.videos);
+  const subtypes = useSelector((state: any) => state.activity.subTypes);
+  const names = useSelector((state: any) => state.activity.names);
+  const videos = useSelector((state: any) => state.activity.videos);
   const selectedVideo = useSelector(
-    (state: RootState) => state.activity.selectedVideo
+    (state: any) => state.activity.selectedVideo
   );
 
   const dispatch = useDispatch();
   const { courseID } = useParams();
+  console.log("Names Array:", names);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+      try { 
         // Apı request to fetch related content
         const response = await axios.get(
           `https://localhost:44340/api/AsyncCourseContents/GetByAsyncCourseId?id=${courseID}`
         );
         const data = response.data; // Get the response data
+
         if (data && data.items) {
           const itemsArray = data.items;
 
           dispatch(setAccordionData(itemsArray));
-          dispatch(setNames(itemsArray.map((item: any) => item.name)));
+          const namesArray = itemsArray.map((item: any) => item.name);
+          dispatch(setNames(namesArray));
+          console.log("Names Array:", names);
           dispatch(setSubtypes(itemsArray.map((item: any) => item.subtype)));
-          dispatch(
-            setSelectedVideo(itemsArray.map((item: any) => item.selectedVideo))
-          );
-          dispatch(setSelectedVideo(itemsArray.map((item: any) => item.url)));
+          // dispatch(setSelectedVideo(itemsArray.map((item: any) => item.url)));
         }
         // Log the fetched data
         console.log(data);
@@ -82,7 +81,8 @@ export default function Activity() {
       }
     };
 
-    fetchData(); // Call the async function
+    // Call the async function
+    fetchData();
   }, [courseID]);
 
   // Like butonunun toggle fonksiyonu
@@ -227,118 +227,32 @@ export default function Activity() {
                           VideoDetails içinde o id yi yakalayıp getbyid olan apiye istek atacağız
                           gelen verideki bilgileri o kısıma yazdıracağız
                       */}
-                      <Col className="custom-left">
+                   <Col className="custom-left">
                         <div className="scrollable-div">
-                          {names.map((name: any, index: any) => (
-                            <Accordion
-                              key={index}
-                              title={name}
-                              className="accordion-header"
-                            >
-                              <div
-                                className="accordion-content"
-                                onClick={() =>
-                                  handleAccordionContentClick(subtypes[index])
-                                }
-                              >
-                                {subtypes[index]}
-                              </div>
-                            </Accordion>
-                          ))}
-                        </div>
+                        
+
+                          {names.map((item:any, index:any) => (
+                            <div key={index} className="mx-4 mt-3">
+                              
+                              <Link to="#">
+                                <div className="accordion-subtitle">
+                                  <p className="subtitle-detail left-menu-link-import">
+                                    {item}
+                                  </p>
+                                </div>
+                              </Link>
+                            </div>
+                             ))}
+
+
+                          </div>
                       </Col>
                     </Row>
                   </div>
                 </div>
               )}
               {activeTab === "hakkinda" && (
-                <div className="tab-hakkında">
-                  <div className="info-item row">
-                    <div className="col-6">
-                      <table>
-                        <tr className="table-row">
-                          <td>
-                            <FontAwesomeIcon
-                              icon={faCalendarAlt}
-                              className="icon"
-                            />
-                          </td>
-                          <td className="column-width">Başlangıç</td>
-                          <td className="table-desc">01.01.2024</td>
-                        </tr>
-
-                        <tr className="table-row">
-                          <td>
-                            <FontAwesomeIcon
-                              icon={faCalendarAlt}
-                              className="icon"
-                            />
-                          </td>
-                          <td className="column-width">Bitiş</td>
-                          <td className="table-desc">01.02.2024</td>
-                        </tr>
-
-                        <tr className="table-row">
-                          <td>
-                            <FontAwesomeIcon icon={faClock} className="icon" />
-                          </td>
-                          <td>Geçirdiğin Süre</td>
-                          <td className="table-desc">28 sa 28 dk</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <FontAwesomeIcon icon={faClock} className="icon" />
-                          </td>
-                          <td>Tahmini Süre</td>
-                          <td className="table-desc">65 g 36 sa 30 dk</td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <FontAwesomeIcon icon={faList} className="icon" />
-                          </td>
-                          <td>Kategori</td>
-                          <td className="table-desc">Genel</td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <FontAwesomeIcon icon={faBook} className="icon" />
-                          </td>
-                          <td>İçerik</td>
-                          <td className="table-desc">290</td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <FontAwesomeIcon icon={faTasks} className="icon" />
-                          </td>
-                          <td>Görev</td>
-                          <td className="table-desc">65</td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <FontAwesomeIcon icon={faVideo} className="icon" />
-                          </td>
-                          <td>Video</td>
-                          <td className="table-desc">225</td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <FontAwesomeIcon
-                              icon={faIndustry}
-                              className="icon"
-                            />
-                          </td>
-                          <td>Üretici Firma</td>
-                          <td className="table-desc">Enocta</td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
+               <ActivityAbout/>
               )}
               {} {activeTab === "soru" && <div>Soru Sor & Paylaş Bölümü</div>}
             </div>
@@ -348,3 +262,4 @@ export default function Activity() {
     </div>
   );
 }
+

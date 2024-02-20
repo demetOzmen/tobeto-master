@@ -53,12 +53,12 @@ export default function EditMyInfo() {
     }
   };
   return (
-    <Container className="bordered">
+    <Container>
       <Row>
-        <Col className="bordered" md={3} sm={12}>
+        <Col  md={3} sm={12}>
           <Menu />
         </Col>
-        <Col className="edt-pro-cont bordered" md={9} sm={12}>
+        <Col className="edt-pro-cont " md={9} sm={12}>
           <Row>
             <Col md={12}>
               <div className="p-img-cont">

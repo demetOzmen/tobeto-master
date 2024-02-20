@@ -26,36 +26,44 @@ import Education from "./pages/MyProfile/Education/Education";
 import Experience from "./pages/MyProfile/Experience/Experience";
 import Language from "./pages/MyProfile/Language/Language";
 import SocialMedia from "./pages/MyProfile/SocialMedia/SocialMedia";
-
-
+import { VideoDetails } from "./components/Activity/VideoDetails";
+import ComingSoonPage from "./pages/ComingSoonPage/ComingSoonPage";
 
 function App() {
   return (
     <>
-    {/*Test */}
+      {/*Test */}
       <Routes>
         <Route
           path="/"
           element={
             <>
               <Navi />
-              <Platform/>
+              <Platform />
               <Footer />
             </>
           }
         />
-{/*--Test--*/}
-<Route
-          path="/dates"
+        
+        <Route
+          path="/comingSoon"
           element={
             <>
-              <Navi />
-              <Date/>
-              <Footer />
+            <ComingSoonPage/>
             </>
           }
         />
 
+        <Route
+          path="/dates"
+          element={
+            <>
+              <Navi />
+              <Date />
+              <Footer />
+            </>
+          }
+        />
 
         <Route
           path="/platform"
@@ -79,7 +87,7 @@ function App() {
           }
         />
 
-<Route
+        <Route
           path="/register"
           element={
             <>
@@ -90,7 +98,7 @@ function App() {
           }
         />
 
-<Route
+        <Route
           path="/connection"
           element={
             <>
@@ -140,8 +148,27 @@ function App() {
             </>
           }
         />
-                <Route
-          path="/egitimlerim"
+
+        <Route
+          path="/videoDetails/:courseContentId"
+          element={
+            <>
+              <VideoDetails />
+            </>
+          }
+        />
+
+        <Route
+          path="/activity/:courseID"
+          element={
+            <>
+              <Activity />
+            </>
+          }
+        />
+
+        <Route
+          path="/my-course"
           element={
             <>
               <Navi />
@@ -150,7 +177,7 @@ function App() {
           }
         />
 
-<Route
+        <Route
           path="/my-profile"
           element={
             <>
@@ -248,7 +275,6 @@ function App() {
             </>
           }
         />
-
       </Routes>
     </>
   );

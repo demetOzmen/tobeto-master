@@ -1,8 +1,7 @@
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {};
 
@@ -11,10 +10,15 @@ export const ShowMore = (props: Props) => {
     <>
       <Row className="all-edu-btn  ">
         <div className="p-row-container">
-          <Link to="/my-course" className="load-more-btn">
-            <FontAwesomeIcon icon={faChevronRight} className="p-button-icon" />
-            <span>Daha Fazla Göster</span>
-          </Link>
+          <a href="/my-course" className="link-full-row">
+            <button className="load-more-btn">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                className="p-button-icon"
+              />
+              <span>Daha Fazla Göster</span>
+            </button>
+          </a>
         </div>
       </Row>
     </>

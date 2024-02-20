@@ -26,24 +26,22 @@ export const VideoDetails = (props: Props) => {
               <Row className="video-name">name</Row>
               <Row className="video-time-detail">
                 <Col>title</Col>
-                <Col>100 puan</Col>
-                {/*burası kalsın şimdilik yeni tablo eklenmesi lazım */}
+                <Col>100 puan</Col>{/*burası kalsın şimdilik yeni tablo eklenmesi lazım */}
                 <Col className="ok-icon">
                   <FontAwesomeIcon icon={faThumbsUp} />
-                  &nbsp;Tebrikler,&nbsp;&nbsp;&nbsp;tamamladın!
-                  {/*burası kalsın şimdilik yeni tablo eklenmesi lazım */}
+                  &nbsp;Tebrikler,&nbsp;&nbsp;&nbsp;tamamladın!{/*burası kalsın şimdilik yeni tablo eklenmesi lazım */}
                 </Col>
               </Row>
             </Col>
 
             <Col className="video-detail-btn">
               {/* buraya da apiden çektiğimiz verileri göndereceğiz ve oradaki alanları dolduracağız */}
-              <OffCanvas
+              <OffCanvas 
               /*className={
-              isOffCanvasOpen ? "offcanvas-open" : ""
-              }
-              showButton={showButton}
-              setShowButton={setShowButton}*/
+                                  isOffCanvasOpen ? "offcanvas-open" : ""
+                                }
+                                showButton={showButton}
+                                setShowButton={setShowButton}*/
               />
             </Col>
           </Row>

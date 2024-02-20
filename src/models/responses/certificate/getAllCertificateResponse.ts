@@ -5,6 +5,7 @@ export interface Certificate {
   name: string;
 }
 
+
 export interface getAllCertificateResponse {
   from: number;
   index: number;
@@ -15,3 +16,4 @@ export interface getAllCertificateResponse {
   hasPrevious: boolean;
   hasNext: boolean;
 }
+
