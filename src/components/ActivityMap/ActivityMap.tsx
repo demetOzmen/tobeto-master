@@ -1,6 +1,5 @@
-// ActivityMap.tsx
-import React from 'react';
-import './ActivityMap.css'; // Stillerinizi burada tanımlayın
+import React from "react";
+import "./ActivityMap.css";
 
 type ActivityLevel = 0 | 1 | 2 | 3 | 4;
 
@@ -8,10 +7,6 @@ interface ActivityMapProps {
   activityData: ActivityLevel[];
 }
 
-
-// ActivityMap.tsx
-
-// ...diğer importlar
 
 const ActivityMap: React.FC<ActivityMapProps> = ({ activityData }) => {
   // Aktivite seviyesine bağlı olarak tooltip metnini döndüren fonksiyon
@@ -25,14 +20,16 @@ const ActivityMap: React.FC<ActivityMapProps> = ({ activityData }) => {
       "5 adet aktivite", // activityLevel 5 için
     ];
 
-    return activityDescriptions[activityLevel] || "Bilinmeyen aktivite seviyesi";
+    return (
+      activityDescriptions[activityLevel] || "Bilinmeyen aktivite seviyesi"
+    );
   };
 
-  // Her satırdaki nokta sayısı
+
   const dotsPerRow = 52;
 
   return (
-<div className="activity-map">
+    <div className="activity-map">
       {Array.from({ length: 7 }, (_, rowIndex) => (
         <div key={rowIndex} className="activity-row">
           {activityData

@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react"; // Bir kez import edin
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import "../Connection/Connection.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { ConnectionFormData } from "./ConnectionInterface";
@@ -12,14 +12,12 @@ function Connection() {
     setRecaptchaValue(value);
   };
 
-  // State'i oluşturun ve başlangıç değerlerini ayarlayın
   const [formData, setFormData] = useState<ConnectionFormData>({
     Name: "",
     email: "",
     message: "",
   });
 
-  // Input değişikliklerini ele alacak fonksiyon
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -30,7 +28,6 @@ function Connection() {
     });
   };
 
-  // Form submit edildiğinde çalışacak fonksiyon
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // TODO:
@@ -157,9 +154,10 @@ function Connection() {
                 />
                 <br />
                 <div className="btn-cn-dv">
-                <button type="submit" className="btn-cn">
-                  Gönder
-                </button></div>
+                  <button type="submit" className="btn-cn">
+                    Gönder
+                  </button>
+                </div>
               </form>
             </form>
           </Col>

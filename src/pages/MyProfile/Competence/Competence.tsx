@@ -9,7 +9,7 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import Menu from "../Menu/Menu";
-import './Competence.css'
+import "./Competence.css";
 
 type Skill = {
   id: number;
@@ -17,7 +17,6 @@ type Skill = {
 };
 
 export default function Competence() {
-
   const skillOptions = [
     "Muhasebe",
     "javascript",
@@ -40,7 +39,7 @@ export default function Competence() {
     "Marka Yönetimi",
     "İletişim",
     "Pazarlama",
-    "Building and Construction" // Bu başlık diğerlerinden farklı bir dildedir, gerekiyorsa çeviriniz.
+    "Building and Construction", 
   ];
 
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -63,12 +62,12 @@ export default function Competence() {
   return (
     <Container>
       <Row>
-        <Col  md={3} sm={12}>
+        <Col md={3} sm={12}>
           <Menu />
         </Col>
-        <Col  md={9} sm={12}>
-          <Form >
-            <Form.Group  controlId="skillSelect">
+        <Col md={9} sm={12}>
+          <Form>
+            <Form.Group controlId="skillSelect">
               <Form.Label className="skill-select">Yetkinlik</Form.Label>
               <Form.Control
                 as="select"

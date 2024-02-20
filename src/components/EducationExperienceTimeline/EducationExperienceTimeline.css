@@ -1,65 +1,61 @@
-/* EducationExperienceTimeline.css */
-
 .timeline-container {
-    position: relative;
-    padding-left: 15px; /* Noktalar ve çizgi için yer bırakın */
-    border-bottom: 6px  double rgb(168, 167, 167);
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    padding-top: 10px;
-  }
-  
-  .timeline-item {
-    position: relative;
-    margin-bottom: 40px;
-  }
-  
-  .timeline-dot {
-    position: absolute;
-    left: 7px; /* Noktayı çizginin sol tarafına hizalayın */
-    top:180px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #A442FF; /* Nokta rengi */
-  }
-  
-  .timeline-date {
-    position: absolute;
-    left: -140px; /* Tarihi noktanın sol tarafına hizalayın */
-    top: 0;
-    white-space: nowrap; /* Tarihin tek satırda kalmasını sağlayın */
-    text-align: right; /* Tarihi sağa hizalayın */
-    width: 100px; /* Tarih alanının genişliği */
-    margin-right: 20px; /* Tarih ve nokta arasında boşluk */
-  }
-  
-  .timeline-content {
-    background-color: #fff; /* İçerik arkaplan rengi */
-    border-radius: 4px; /* Kenar yuvarlaklığı */
-    padding: 10px; /* İçerik padding'i */
-    margin-left: 0px; /* İçerik ve nokta arasında boşluk */
-    padding-top: 40px;
-  }
-  
-  .timeline-content h3 {
-    margin-top: 0;
-    font-size: 1rem;
-  }
-  
-  .timeline-content p {
-    margin: 0;
-    font-size: 0.875rem;
-  }
-  
-  /* Zaman çizgisini çizmek için bir pseudo-element kullanın */
-  .timeline-container::before {
-    content: '';
-    position: absolute;
-    left: 20;
-    top: 80px;
-    bottom: 0;
-    width: 3px; /* Çizgi genişliği */
-    background-color: #A442FF; /* Çizgi rengi */
-  }
-  
+  position: relative;
+  padding-left: 15px; 
+  border-bottom: 6px double rgb(168, 167, 167);
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  padding-top: 10px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 7px; 
+  top: 180px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #a442ff;
+}
+
+.timeline-date {
+  position: absolute;
+  left: -140px;
+  top: 0;
+  white-space: nowrap; 
+  text-align: right; 
+  width: 100px;
+  margin-right: 20px; 
+}
+
+.timeline-content {
+  background-color: #fff;
+  border-radius: 4px; 
+  padding: 10px; 
+  margin-left: 0px; 
+  padding-top: 40px;
+}
+
+.timeline-content h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.timeline-content p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  left: 20;
+  top: 80px;
+  bottom: 0;
+  width: 3px; 
+  background-color: #a442ff;
+}

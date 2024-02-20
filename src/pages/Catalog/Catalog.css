@@ -1,117 +1,108 @@
 /* DropdownMenu.css */
 .ct-dropdown-container {
-    width: 318px;
-    border-radius: 8px;
-    background-color: #282828;
-    color: white;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column; /* Alt alta sıralama için */
-    padding: 15px 30px 15px 20px !important;
-    opacity: 95%;
-    margin:0px 5px 5px 5px;
-  }
-
-  .filtre-menu-title{
-   width: 100%;
-   padding: 5px;
-   font-size: 22px;
-   font-weight: bold;
-   border-bottom: 0.5px solid #8b8b8b ;
-   margin-left: 10px;
-  }
-  
-  .ct-dropdown {
-    width: 100%; /* Her dropdown'ın genişliğini ebeveynine eşit yap */
-    border-radius: 20px;
-    background-color:#41384A ;
-    margin : 7px 7px;
-    line-height: 16px;
-    background: rgb(86, 67, 104);
-  }
-  
-
-  .ct-dropdown-header {
-    padding: 16px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    font-size: 16px;
-  }
-  
-  .ct-dropdown-header .arrow::after {
-    content: '◄'; /* Kapalıyken gösterilen ok */
-    font-size: 16px;
-    bottom: 15px;
-    position: absolute;
-    right: 16px;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .ct-dropdown-header .arrow.open::after {
-    transform: rotate(-90deg); /* Açıkken oku döndür */
-  }
-  
-  .ct-dropdown-body {
-   /* Başlangıçta görünmez */
-    padding: 8px;
-    max-height: 200px; /* 8 satırın yaklaşık yüksekliği, satır başına 25px varsayılarak */
-    overflow-y: auto;
-    margin-bottom: 12px;
-    margin-right: 5px;
-  }
- 
-/* Scrollbar genişliğini daralt */
-.ct-dropdown-body::-webkit-scrollbar {
-    width: 5px; /* İnce bir scrollbar için genişlik */
-  }
-  
-  /* Scrollbar track gizle */
-  .ct-dropdown-body::-webkit-scrollbar-track {
-    background: white; /* Track kısmını gizlemek için */
-    border-radius: 3px;
-  }
-  
-  /* Scrollbar thumb */
-  .ct-dropdown-body::-webkit-scrollbar-thumb {
-    background: #9933FF; /* Kaydırma çubuğunun rengi */
-    border-radius: 3px;
-    padding-top: 5px;
-  }
-  
-  /* Scrollbar thumb üzerine hover olduğunda */
-  .ct-dropdown-body::-webkit-scrollbar-thumb:hover {
-    background: #9b9b9b; /* Hover rengi */
-  }
-  
-  .ct-dropdown-body .dropdown-item {
-    padding: 8px 16px;
-    transition: background-color 0.3s;
-    font-size: 14px;
-  }
-
-  .ct-dropdown-item {
-    display: block; /* Her bir label'ı yeni bir satıra yerleştir */
-    padding: 8px 16px; /* İstediğiniz padding değerlerini ayarlayın */
-    /* Diğer stil tanımlamaları */
-  }
-
-.ct-dropdown-item  span {
-  padding-left: 8px; /* Metne sol taraftan boşluk ekler */
+  width: 318px;
+  border-radius: 8px;
+  background-color: #282828;
+  color: white;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px 15px 20px !important;
+  opacity: 95%;
+  margin: 0px 5px 5px 5px;
 }
-  
 
-  .ct-dropdown-search {
-    margin-bottom: 16px;
-  }
-  
-  .ct-dropdown-search input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: none;
-    box-sizing: border-box; /* Padding'i genişliğe dahil et */
-  }
-  
+.filtre-menu-title {
+  width: 100%;
+  padding: 5px;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 0.5px solid #8b8b8b;
+  margin-left: 10px;
+}
+
+.ct-dropdown {
+  width: 100%;
+  border-radius: 20px;
+  background-color: #41384a;
+  margin: 7px 7px;
+  line-height: 16px;
+  background: rgb(86, 67, 104);
+}
+
+.ct-dropdown-header {
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  font-size: 16px;
+}
+
+.ct-dropdown-header .arrow::after {
+  content: "◄";
+  font-size: 16px;
+  bottom: 15px;
+  position: absolute;
+  right: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ct-dropdown-header .arrow.open::after {
+  transform: rotate(-90deg);
+}
+
+.ct-dropdown-body {
+  padding: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  margin-right: 5px;
+}
+
+.ct-dropdown-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.ct-dropdown-body::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 3px;
+}
+
+.ct-dropdown-body::-webkit-scrollbar-thumb {
+  background: #9933ff;
+  border-radius: 3px;
+  padding-top: 5px;
+}
+
+.ct-dropdown-body::-webkit-scrollbar-thumb:hover {
+  background: #9b9b9b;
+}
+
+.ct-dropdown-body .dropdown-item {
+  padding: 8px 16px;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.ct-dropdown-item {
+  display: block;
+  padding: 8px 16px;
+}
+
+.ct-dropdown-item span {
+  padding-left: 8px;
+}
+
+.ct-dropdown-search {
+  margin-bottom: 16px;
+}
+
+.ct-dropdown-search input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  box-sizing: border-box;
+}

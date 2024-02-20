@@ -1,8 +1,8 @@
 import React, { useState, FormEvent } from "react";
 import "./Login.css";
-import { Button, Col, Image, Row} from "react-bootstrap";
+import { Button, Col, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate , Link  } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginUser, UserCredentials } from "../../store/reducers/userReducer";
 import tokenService from "../../core/services/tokenService";
 
@@ -10,7 +10,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Redux state
   const { loading, error } = useSelector((state: any) => state.user);
 
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ export default function Login() {
     e.preventDefault();
 
     let userCredentials: UserCredentials = {
-      email: email, // Assuming email corresponds to the username
+      email: email,
       password,
     };
 
@@ -36,8 +35,8 @@ export default function Login() {
   return (
     <>
       <Row className="p-5 mb-5">
-        <Col  className="mx-2" lg={2} md={12} sm={12}></Col>
-        <Col  className="mx-2" lg={4} md={12} sm={12}>
+        <Col className="mx-2" lg={2} md={12} sm={12}></Col>
+        <Col className="mx-2" lg={4} md={12} sm={12}>
           <div className="login-main">
             <div className="login card-login-animation">
               <div className="form">
@@ -78,7 +77,7 @@ export default function Login() {
           </div>
         </Col>
 
-        <Col  className="mx-2" lg={3} md={6} sm={12}>
+        <Col className="mx-2" lg={3} md={6} sm={12}>
           <div className="login card-right ">
             <div className="form login-card-right-in">
               <div className="text-center mt-5">
@@ -91,7 +90,7 @@ export default function Login() {
                   <span className="rigth-card-job">Aradığın "İş" Burada!</span>
                   <br />
                   <Link to="/register">
-                  <Button className="btn-sm">Başvur</Button>
+                    <Button className="btn-sm">Başvur</Button>
                   </Link>
                 </div>
               </div>

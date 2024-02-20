@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import announcementService from '../../services/announcementService';
+import React, { useState, useEffect } from "react";
+import announcementService from "../../services/announcementService";
 
 interface Announcement {
   id: string;
@@ -19,8 +19,8 @@ const AnnouncementTest: React.FC = () => {
       const response = await announcementService.getAll();
       setAnnouncements(response.data.items);
     } catch (error: any) {
-      console.error('Veri çekme hatası:', error.message);
-      setError('Veri çekme işlemi başarısız oldu');
+      console.error("Veri çekme hatası:", error.message);
+      setError("Veri çekme işlemi başarısız oldu");
     } finally {
       setLoading(false);
     }
@@ -44,8 +44,10 @@ const AnnouncementTest: React.FC = () => {
       <ul>
         {announcements.map((announcement) => (
           <li key={announcement.id}>
-            <strong>Duyuru Türü:</strong> {announcement.announcementTypeType}<br />
-            <strong>Açıklama:</strong> {announcement.description}<br />
+            <strong>Duyuru Türü:</strong> {announcement.announcementTypeType}
+            <br />
+            <strong>Açıklama:</strong> {announcement.description}
+            <br />
             <strong>Duyuru Adı:</strong> {announcement.announcementName}
           </li>
         ))}

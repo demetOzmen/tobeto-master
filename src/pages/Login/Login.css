@@ -166,9 +166,9 @@
   height: 100%;
 }
 .card-login-animation {
-  margin-right: 15px; /* İlk karttan sonraki boşluk */
+  margin-right: 15px; 
 }
 
 .card-right {
-  margin-left: 15px; /* İkinci karttan önceki boşluk */
+  margin-left: 15px; 
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import asyncCourseService from '../../services/asyncCourseService';
+import React, { useState, useEffect } from "react";
+import asyncCourseService from "../../services/asyncCourseService";
 
 interface AsyncCourse {
   id: string;
@@ -18,8 +18,8 @@ export const AsyncCourseTest: React.FC = () => {
         const response = await asyncCourseService.getAll();
         setAsyncCourses(response.data.items);
       } catch (error: any) {
-        console.error('Veri çekme hatası:', error.message);
-        setError('Veri çekme işlemi başarısız oldu');
+        console.error("Veri çekme hatası:", error.message);
+        setError("Veri çekme işlemi başarısız oldu");
       } finally {
         setLoading(false);
       }
@@ -42,7 +42,8 @@ export const AsyncCourseTest: React.FC = () => {
       <ul>
         {asyncCourses.map((asyncCourse) => (
           <li key={asyncCourse.id}>
-            <strong>Kategori ID:</strong> {asyncCourse.categoryId}<br />
+            <strong>Kategori ID:</strong> {asyncCourse.categoryId}
+            <br />
             <strong>İsim:</strong> {asyncCourse.name}
           </li>
         ))}

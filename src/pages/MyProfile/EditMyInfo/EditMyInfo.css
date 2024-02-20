@@ -1,7 +1,7 @@
 .edt-pro-cont {
   padding-bottom: 170px;
 }
-/* Form elemanları için genel kenarlık ve aralık */
+
 .form-group {
   margin-bottom: 15px;
 }
@@ -14,8 +14,8 @@
 
 .edit-icon-container {
   position: absolute;
-  top: 110px; /* ya da ihtiyacınıza göre ayarlayın */
-  right: 370px; /* ya da ihtiyacınıza göre ayarlayın */
+  top: 110px; 
+  right: 370px; 
   cursor: pointer;
   color: blueviolet;
   background-color: white;
@@ -35,24 +35,19 @@
 .edit-icon-button {
   background: none;
   border: none;
-  color: blueviolet; /* İkonun rengini değiştirin */
+  color: blueviolet; 
   cursor: pointer;
 }
 
 .edit-icon-button:hover{
   background: none;
-  color: rgb(38, 2, 71); /* İkonun rengini değiştirin */
+  color: rgb(38, 2, 71); 
   cursor: pointer;
 }
 
-.button-edt-pro {
-  /* Butonunuzun stilini burada tanımlayın */
-}
-
-
 /* Buton stil ayarları */
 .button-edt-pro {
-  background-color: blueviolet; /* Mor renk */
+  background-color: blueviolet; 
   border: none;
   padding: 10px 15px;
   color: white;
@@ -64,37 +59,35 @@
 }
 
 .button-edt-pro:hover {
-  background-color: #5e35b1; /* Daha koyu bir mor renk */
+  background-color: #5e35b1;
 }
 
 .edt-pro-cont {
   padding-bottom: 170px;
 }
 
-/* Form elemanları için genel kenarlık ve aralık */
 .form-group {
   margin-bottom: 15px;
 }
 
-
-
-/* Input kenarlık ve gölge stil ayarları */
 .form-control {
   border-radius: 4px;
   border: 1px solid #ced4da;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
 }
 
-/* Dropdown ok işaretinin rengi */
 .form-control:required:invalid {
   color: gray;
 }
+
 .form-control option[value=""][disabled] {
   display: none;
 }
+
 .form-control option {
   color: gray;
 }
+
 .edt-pro-label {
   margin-top: 20px;
   color: gray;
@@ -110,7 +103,6 @@
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
-  vertical-align: middle;
   background: #fff
     url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024' fill='%23999'%3E%3Cpath d='M807.04 328.192l-295.04 295.616-295.04-295.616h590.08z'/%3E%3C/svg%3E")
     no-repeat right 0.75rem center/8px 10px;
@@ -124,7 +116,6 @@
   height: 50px;
 }
 
-/* Focus state for the select element */
 .edt-pro-select:focus {
   color: #495057;
   background-color: #fff;
@@ -133,12 +124,10 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-/* This is to remove the default arrow in IE */
 .edt-pro-select::-ms-expand {
   display: none;
 }
 
-/* You might want to include styles for options as well */
 .edt-pro-select option {
   padding: 0.5rem;
 }
@@ -161,7 +150,6 @@
   cursor: pointer;
 }
 
-/* Özelleştirilmiş checkbox - Kapalı durum */
 .edt-pro-check label::before {
   content: "";
   position: absolute;
@@ -174,14 +162,12 @@
   border-radius: 4px;
 }
 
-/* Checkbox işaretlendiğinde - Açık durum */
 .edt-pro-check input[type="checkbox"]:checked + label::before {
-  background-color: blueviolet; /* Kırmızı arkaplan */
-  border-color: rgb(118, 11, 218); /* Kırmızı kenarlık */
+  background-color: blueviolet; 
+  border-color: rgb(118, 11, 218); 
   box-shadow: 0 0 10px blueviolet;
 }
 
-/* İşaret simgesi (işaretli olduğunda) */
 .edt-pro-check input[type="checkbox"]:checked + label::after {
   content: "";
   position: absolute;
@@ -202,7 +188,6 @@
   width: 100%;
 }
 
-
 .text-muted-edt {
   font-size: 12px;
   color: #e9341c;
@@ -211,7 +196,6 @@
   font-style: italic;
   letter-spacing: 1px;
 }
-
 
 .edt-pro-input::placeholder {
   color: #999;
@@ -227,6 +211,7 @@
   color: #999;
   opacity: 1;
 }
+
 .edt-pro-btn {
   margin-top: 2px;
 }

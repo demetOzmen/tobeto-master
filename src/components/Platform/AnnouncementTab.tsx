@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import { Announcement } from '../../models/responses/announcement/getAllAnnouncementResponse'
 import announcementService from '../../services/announcementService'
 import { ShowMoreAnc } from './ShowMoreAnc'
+import "../../pages/Platform/Platform.css"
+import Modal from "../../components/Modal/Modal";
 
 type Props = {}
 
@@ -23,6 +25,16 @@ export const AnnouncementTab = (props: Props) => {
     fetchAnnouncements();
   }, []);
 
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -50,13 +62,17 @@ export const AnnouncementTab = (props: Props) => {
                     <Col className="anc-date">
                       <FontAwesomeIcon icon={faCalendar} /> {announcement.sendDate}{" "}
                     </Col>
-                    <Col className="anc-link ">
-                      <Link
+               <Col className="anc-link ">
+                         {/*  <Link
                         to={`/announcement/${announcement.id}`}
                         className="anc-link "
                       >
                         Devamını Oku
-                      </Link>
+                      </Link>*/}
+                    <button className="anc-link" onClick={openModal}>
+                      Devamını Oku
+                    </button>
+                    {showModal && <Modal closeModal={closeModal} />}
                     </Col>
                   </Row>
                 </Col>

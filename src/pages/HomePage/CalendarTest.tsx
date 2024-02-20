@@ -15,7 +15,8 @@ const CalendarComponent: React.FC = () => {
         const response = await axios.get(
           "https://localhost:44340/api/AsyncCourses/GetList"
         );
-        const data: { items: { name: string; createdDate: string }[] } = response.data;
+        const data: { items: { name: string; createdDate: string }[] } =
+          response.data;
 
         const formattedEvents = data.items.map((event) => ({
           title: event.name,
@@ -32,29 +33,29 @@ const CalendarComponent: React.FC = () => {
 
   return (
     <Container>
-    <div style={{ padding: "20px" }}>
-      <div style={{ fontSize: "20px", fontWeight: "bold", color: "black" }}>
-        Takvim
+      <div style={{ padding: "20px" }}>
+        <div style={{ fontSize: "20px", fontWeight: "bold", color: "black" }}>
+          Takvim
+        </div>
+        <div style={{ marginTop: "20px" }}>
+          <Calendar
+            plugins={[dayGridPlugin, timeGridPlugin]}
+            initialView="dayGridMonth"
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            events={events}
+            dayHeaderFormat={{
+              weekday: "long",
+              month: "numeric",
+              day: "numeric",
+              year: "numeric",
+            }}
+          />
+        </div>
       </div>
-      <div style={{ marginTop: "20px" }}>
-        <Calendar
-          plugins={[dayGridPlugin, timeGridPlugin]}
-          initialView="dayGridMonth"
-          headerToolbar={{
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay",
-          }}
-          events={events}
-          dayHeaderFormat={{
-            weekday: 'long',
-            month: 'numeric',
-            day: 'numeric',
-            year: 'numeric'
-          }}
-        />
-      </div>
-    </div>
     </Container>
   );
 };

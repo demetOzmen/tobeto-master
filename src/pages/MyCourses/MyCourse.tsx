@@ -26,7 +26,6 @@ function MyCourse() {
     }
   };
   const handleSearch = () => {
-    // Arama işlemini burada gerçekleştirin
     console.log(searchTerm);
   };
 
@@ -143,8 +142,16 @@ function MyCourse() {
                             <div className="edu-card-body">
                               <h5 className="edu-card-title">{course.name}</h5>
                               <p className="edu-card-date">
-                              {new Date(course.createdDate).toLocaleDateString('tr-TR')} - 
-                              {new Date(course.createdDate).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
+                                {new Date(
+                                  course.createdDate
+                                ).toLocaleDateString("tr-TR")}{" "}
+                                -
+                                {new Date(
+                                  course.createdDate
+                                ).toLocaleTimeString("tr-TR", {
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
                               </p>
                               <button className="edu-card-button">
                                 Eğitime Git

@@ -9,22 +9,21 @@ import "./EditMyInfo.css";
 
 export default function EditMyInfo() {
   const [image, setImage] = useState<string>(
-    'https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimages.19a45d39.png&w=128&q=75'
+    "https://tobeto.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fimages.19a45d39.png&w=128&q=75"
   );
 
-  // Tüm kullanıcı bilgilerini tek bir state içerisinde yönetmek
   const [personalInfo, setPersonalInfo] = useState({
-    adiniz: '',
-    soyadiniz: '',
-    identityNumber: '',
-    email: '',
-    phoneNumber: '',
+    adiniz: "",
+    soyadiniz: "",
+    identityNumber: "",
+    email: "",
+    phoneNumber: "",
     birthDate: null as Date | null,
-    country: 'Türkiye', // Örnek varsayılan değer
-    city: '',
-    district: '',
-    neighborhood: '',
-    about: '',
+    country: "Türkiye",
+    city: "",
+    district: "",
+    neighborhood: "",
+    about: "",
   });
 
   const handleChange = (
@@ -34,28 +33,25 @@ export default function EditMyInfo() {
     setPersonalInfo({ ...personalInfo, [name]: value });
   };
 
-  // Doğum tarihi için DatePicker'dan gelen değişikliği işleme
   const handleBirthDateChange = (date: Date | null) => {
     setPersonalInfo({ ...personalInfo, birthDate: date });
   };
 
-  // Formun gönderilmesi
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(personalInfo);
-    // Burada sunucuya gönderme işlemleri yapılabilir.
   };
 
-  // Resim değişikliğini işleme
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setImage(URL.createObjectURL(e.target.files[0]));
     }
   };
+
   return (
     <Container>
       <Row>
-        <Col  md={3} sm={12}>
+        <Col md={3} sm={12}>
           <Menu />
         </Col>
         <Col className="edt-pro-cont " md={9} sm={12}>
@@ -63,7 +59,6 @@ export default function EditMyInfo() {
             <Col md={12}>
               <div className="p-img-cont">
                 <img className="p-img" src={image} alt="Profil" />
-                {/* Düzenleme ikonu ve inputu */}
                 <div className="edit-icon-container">
                   <Button
                     className="edit-icon-button"
@@ -73,7 +68,6 @@ export default function EditMyInfo() {
                   >
                     <FontAwesomeIcon icon={faEdit} />
                   </Button>
-
                   <input
                     id="imageUpload"
                     type="file"
@@ -117,13 +111,11 @@ export default function EditMyInfo() {
               </Col>
             </Row>
             <Row>
-              {/* Telefon Numarası Alanı */}
               <Col md={6} sm={12}>
                 <Form.Group controlId="phoneNumber">
                   <Form.Label className="edt-pro-label">
                     Telefon Numaranız*
                   </Form.Label>
-
                   <Form.Control
                     className="edt-pro-input edt-pro-input-date "
                     type="text"
@@ -136,13 +128,11 @@ export default function EditMyInfo() {
                   />
                 </Form.Group>
               </Col>
-              {/* Doğum Tarihi Alanı */}
               <Col md={6} sm={12}>
                 <Form.Group controlId="birthDate">
                   <Form.Label className="edt-pro-label">
                     Doğum Tarihiniz*
                   </Form.Label>
-
                   <DatePicker
                     className="edt-pro-input edt-pro-input-date "
                     selected={personalInfo.birthDate}
@@ -219,9 +209,7 @@ export default function EditMyInfo() {
                     onChange={handleChange}
                     required
                   >
-                    {/* Şehir seçenekleri buraya */}
                     <option value="istanbul">İstanbul</option>
-                    {/* ... diğer şehirler */}
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -236,9 +224,7 @@ export default function EditMyInfo() {
                     onChange={handleChange}
                     required
                   >
-                    {/* İlçe seçenekleri buraya */}
                     <option value="bayrampasa">Bayrampaşa</option>
-                    {/* ... ilçeye özgü diğer seçenekler */}
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -256,7 +242,7 @@ export default function EditMyInfo() {
                     value={personalInfo.neighborhood}
                     onChange={handleChange}
                     placeholder="Mahalle/Sokak adını giriniz"
-                    rows={4} 
+                    rows={4}
                   />
                 </Form.Group>
               </Col>
@@ -271,7 +257,7 @@ export default function EditMyInfo() {
                     value={personalInfo.about}
                     onChange={handleChange}
                     placeholder="Kendiniz hakkında bir şeyler yazın"
-                    rows={4} // İhtiyaca göre satır sayısı ayarlanabilir
+                    rows={4} 
                   />
                 </Form.Group>
               </Col>

@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons"; // tıklanmamış için
-import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons"; // tıklanmış için  
+import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTasks } from "@fortawesome/free-solid-svg-icons";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
@@ -12,8 +11,7 @@ import {
   faList,
   faBook,
   faIndustry,
-} from "@fortawesome/free-solid-svg-icons"; //Hakkında kısmı ikonları
-
+} from "@fortawesome/free-solid-svg-icons";
 import "./Activity.css";
 import Accordion from "./ListAccordion/ListAccordion";
 import OffCanvas from "./OffCanvas/OffCanvas";
@@ -22,7 +20,6 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { VideoDetails } from "../../components/Activity/VideoDetails";
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   toggleLike,
   toggleBookmark,
@@ -57,12 +54,11 @@ export default function Activity() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try { 
-        // Apı request to fetch related content
+      try {
         const response = await axios.get(
           `https://localhost:44340/api/AsyncCourseContents/GetByAsyncCourseId?id=${courseID}`
         );
-        const data = response.data; // Get the response data
+        const data = response.data;
 
         if (data && data.items) {
           const itemsArray = data.items;
@@ -85,12 +81,10 @@ export default function Activity() {
     fetchData();
   }, [courseID]);
 
-  // Like butonunun toggle fonksiyonu
   const handleLikeClick = () => {
     dispatch(toggleLike());
   };
 
-  // Bookmark butonunun toggle fonksiyonu
   const handleBookmarkClick = () => {
     dispatch(toggleBookmark());
   };
@@ -227,13 +221,10 @@ export default function Activity() {
                           VideoDetails içinde o id yi yakalayıp getbyid olan apiye istek atacağız
                           gelen verideki bilgileri o kısıma yazdıracağız
                       */}
-                   <Col className="custom-left">
+                      <Col className="custom-left">
                         <div className="scrollable-div">
-                        
-
-                          {names.map((item:any, index:any) => (
+                          {names.map((item: any, index: any) => (
                             <div key={index} className="mx-4 mt-3">
-                              
                               <Link to="#">
                                 <div className="accordion-subtitle">
                                   <p className="subtitle-detail left-menu-link-import">
@@ -242,18 +233,14 @@ export default function Activity() {
                                 </div>
                               </Link>
                             </div>
-                             ))}
-
-
-                          </div>
+                          ))}
+                        </div>
                       </Col>
                     </Row>
                   </div>
                 </div>
               )}
-              {activeTab === "hakkinda" && (
-               <ActivityAbout/>
-              )}
+              {activeTab === "hakkinda" && <ActivityAbout />}
               {} {activeTab === "soru" && <div>Soru Sor & Paylaş Bölümü</div>}
             </div>
           </div>
@@ -262,4 +249,3 @@ export default function Activity() {
     </div>
   );
 }
-

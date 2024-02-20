@@ -1,5 +1,3 @@
-// EducationExperienceTimeline.tsx
-
 import React from "react";
 import "./EducationExperienceTimeline.css";
 
@@ -21,16 +19,13 @@ const EducationExperienceTimeline: React.FC<
     <div className="timeline-container">
       {items.map((item) => (
         <div>
-              
-        
-          
-        
           <div className="timeline-content">
             <h3>{item.institution}</h3>
             <p>{item.description}</p>
-            <div >{item.dateRange}</div>
-          </div><div key={item.id} className="timeline-item ">
-        </div><div className="timeline-dot"></div>
+            <div>{item.dateRange}</div>
+          </div>
+          <div key={item.id} className="timeline-item "></div>
+          <div className="timeline-dot"></div>
         </div>
       ))}
     </div>

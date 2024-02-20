@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 //import { Col, Container, ListGroup, Row   } from 'react-bootstrap'
 
 export default function Content() {
@@ -10,10 +10,7 @@ export default function Content() {
     { id: 5, title: 'Video 5' },
   ];*/
   return (
-
-    <div>
-      Merhaba Content
-    </div>
+    <div>Merhaba Content</div>
 
     /*
     <Container fluid>
@@ -42,5 +39,5 @@ export default function Content() {
       </Row>
     </Container>
     */
-  )
+  );
 }

@@ -1,12 +1,11 @@
-import React, { useEffect, useState,  useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
-import axios from 'axios';
-import { Container, Row, Col, Button, Table } from 'react-bootstrap';
-import Menu from '../Menu/Menu';
-import './Certificate.css';
-import { Certificate as CertificateModel} from "../../../models/responses/certificate/getAllCertificateResponse";
+import React, { useEffect, useState, useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+import axios from "axios";
+import { Container, Row, Col, Button, Table } from "react-bootstrap";
+import Menu from "../Menu/Menu";
+import "./Certificate.css";
+import { Certificate as CertificateModel } from "../../../models/responses/certificate/getAllCertificateResponse";
 import certificateService from "../../../services/certificateService";
-
 
 interface UploadedFile {
   name: string;
@@ -25,7 +24,7 @@ export default function Certificate() {
     try {
       const response = await certificateService.getAll(userId);
       setCertificates(response.data.items);
-      console.log(response.data.items)
+      console.log(response.data.items);
     } catch (error: any) {
       console.error("Veri çekme hatası:", error.message);
       setError("Veri çekme işlemi başarısız oldu");
@@ -35,7 +34,7 @@ export default function Certificate() {
   };
 
   // Dosya bırakıldığında çalışacak fonksiyon
-  const onDrop = useCallback((acceptedFiles:any) => {
+  const onDrop = useCallback((acceptedFiles: any) => {
     // Dosya yükleme işlemi burada yapılacak
     const file = acceptedFiles[0];
     uploadFile(file);
@@ -43,63 +42,66 @@ export default function Certificate() {
 
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
 
-   // Dosyayı listeden kaldırmak için handleDelete fonksiyonu
-   const handleDelete = (index: number) => {
+  // Dosyayı listeden kaldırmak için handleDelete fonksiyonu
+  const handleDelete = (index: number) => {
     setUploadedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
     // Ayrıca, dosyayı sunucudan kaldırmak için bir API çağrısı yapmanız gerekebilir.
   };
 
-  
   // Dosya yükleme fonksiyonu
-  const uploadFile = (file:any) => {
+  const uploadFile = (file: any) => {
     const formData = new FormData();
-    formData.append('file', file); // 'file' bu örnekte API'nizin beklediği alan adıdır.
+    formData.append("file", file); // 'file' bu örnekte API'nizin beklediği alan adıdır.
 
-    axios.post('YOUR_API_ENDPOINT', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    .then(response => {
-      // Yüklenen dosya bilgisini state'e ekleyin
-      setUploadedFiles(prevFiles => [...prevFiles, {
-        name: file.name,
-        type: file.type,
-        size: file.size,
-        lastModifiedDate: file.lastModifiedDate.toLocaleDateString("en-US")
-      }]);
-    })
-    .catch(error => {
-      console.error('Dosya yükleme hatası: ', error);
-    });
+    axios
+      .post("YOUR_API_ENDPOINT", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        // Yüklenen dosya bilgisini state'e ekleyin
+        setUploadedFiles((prevFiles) => [
+          ...prevFiles,
+          {
+            name: file.name,
+            type: file.type,
+            size: file.size,
+            lastModifiedDate: file.lastModifiedDate.toLocaleDateString("en-US"),
+          },
+        ]);
+      })
+      .catch((error) => {
+        console.error("Dosya yükleme hatası: ", error);
+      });
   };
 
   // useDropzone hook'u ile gerekli prop'ları alıyoruz
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-
   useEffect(() => {
     fetchCertificates();
   }, []); // Bağımlılık dizisi boş olduğu için bileşen yüklendiğinde bir kez çalışır
 
-
   return (
-    <Container >
+    <Container>
       <Row>
-        <Col  md={3} sm={12}>
+        <Col md={3} sm={12}>
           <Menu />
         </Col>
         <Col md={9} sm={12}>
-          <div className='dropzone-label'>Sertifikalarım</div>
-          <div {...getRootProps()} className='dropzone'>
-          <input {...getInputProps()} />
-            {
-              isDragActive ?
-                <p>Dosyaları buraya sürükleyip bırakın...</p> :
-                <p>Dosya yüklemek için tıklayın veya dosyaları buraya sürükleyin.</p>
-            }
+          <div className="dropzone-label">Sertifikalarım</div>
+          <div {...getRootProps()} className="dropzone">
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <p>Dosyaları buraya sürükleyip bırakın...</p>
+            ) : (
+              <p>
+                Dosya yüklemek için tıklayın veya dosyaları buraya sürükleyin.
+              </p>
+            )}
           </div>
-          <Table className='drz-table' striped bordered hover>
+          <Table className="drz-table" striped bordered hover>
             <thead>
               <tr>
                 <th>Dosya Adı</th>
@@ -127,4 +129,4 @@ export default function Certificate() {
       </Row>
     </Container>
   );
-};
+}

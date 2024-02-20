@@ -165,7 +165,8 @@ function MyAnnouncement() {
             <Col md={4} sm={12}>
               <div className="anc-card p-2">
                 <div className="anc-title">
-                  {announcement.announcementTypeType}{" "}
+                  {/*{announcement.announcementTypeType}{" "}*/}
+                  <span> Duyuru</span>
                   <span className="anc-ik">İstanbul Kodluyor</span>
                 </div>
                 <br></br>

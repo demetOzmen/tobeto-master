@@ -126,7 +126,7 @@ export default function LoginFooter() {
           <div className="row">
             <div className="col-12 col-md-3 text-left-row2 padding-footer-column">
               <a href="https://tobeto.com/">
-                <Image 
+                <Image
                   src="https://tobeto.com/_next/static/media/tobeto-logo.29b55e1c.svg"
                   width={"130px"}
                 />

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import './SortingDropDown.css'; // Stil dosyasını import edin
+import React, { useState } from "react";
+import "./SortingDropDown.css"; 
 
-function SortingDropdown({ onSortChange }:any) {
-  const [sortOrder, setSortOrder] = useState('name-asc'); // Varsayılan sıralama düzeni
+function SortingDropdown({ onSortChange }: any) {
+  const [sortOrder, setSortOrder] = useState("name-asc");
 
-  const handleSortChange = (event:any) => {
+  const handleSortChange = (event: any) => {
     setSortOrder(event.target.value);
-    onSortChange(event.target.value); // Üst component'e sıralama değişikliğini bildir
+    onSortChange(event.target.value); 
   };
 
   return (
