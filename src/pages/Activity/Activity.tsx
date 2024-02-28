@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons";
-import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark as farBookmark } from "@fortawesome/free-regular-svg-icons"; // tıklanmamış için
+import { faBookmark as fasBookmark } from "@fortawesome/free-solid-svg-icons"; // tıklanmış için
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTasks } from "@fortawesome/free-solid-svg-icons";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,8 @@ import {
   faList,
   faBook,
   faIndustry,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons"; //Hakkında kısmı ikonları
+
 import "./Activity.css";
 import Accordion from "./ListAccordion/ListAccordion";
 import OffCanvas from "./OffCanvas/OffCanvas";
@@ -20,6 +21,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { VideoDetails } from "../../components/Activity/VideoDetails";
 import { useSelector, useDispatch } from "react-redux";
+
 import {
   toggleLike,
   toggleBookmark,
@@ -31,7 +33,6 @@ import {
   setVideos,
   setSelectedVideo,
 } from "../../store/reducers/activityReducer";
-import { ActivityAbout } from "../../components/Activity/ActivityAbout";
 
 export default function Activity() {
   const liked = useSelector((state: any) => state.activity.liked);
@@ -50,15 +51,17 @@ export default function Activity() {
 
   const dispatch = useDispatch();
   const { courseID } = useParams();
-  console.log("Names Array:", names);
-
+  //console.log("Names Array:", names);
+  const [courseContent, setcourseContent] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Apı request to fetch related content
         const response = await axios.get(
-          `https://localhost:44340/api/AsyncCourseContents/GetByAsyncCourseId?id=${courseID}`
+          `https://localhost:7260/api/AsyncCourseContents/GetByAsyncCourseId?id=${courseID}`
         );
-        const data = response.data;
+        setcourseContent(response.data.items.slice(0, 10));
+        const data = response.data; // Get the response data
 
         if (data && data.items) {
           const itemsArray = data.items;
@@ -66,25 +69,27 @@ export default function Activity() {
           dispatch(setAccordionData(itemsArray));
           const namesArray = itemsArray.map((item: any) => item.name);
           dispatch(setNames(namesArray));
-          console.log("Names Array:", names);
+          //console.log("Names Array:", names);
           dispatch(setSubtypes(itemsArray.map((item: any) => item.subtype)));
           // dispatch(setSelectedVideo(itemsArray.map((item: any) => item.url)));
         }
         // Log the fetched data
-        console.log(data);
+        //console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
+    console.log(videoId);
     // Call the async function
     fetchData();
   }, [courseID]);
 
+  // Like butonunun toggle fonksiyonu
   const handleLikeClick = () => {
     dispatch(toggleLike());
   };
 
+  // Bookmark butonunun toggle fonksiyonu
   const handleBookmarkClick = () => {
     dispatch(toggleBookmark());
   };
@@ -114,6 +119,11 @@ export default function Activity() {
   const toggleOffCanvas = () => {
     setIsOffCanvasOpen(!isOffCanvasOpen);
     setShowButton(!isOffCanvasOpen); // OffCanvas açıldığında butonu gizle
+  };
+
+  const [videoId, SetVideoId] = useState(null);
+  const handleVideoSelect = (videoId: any) => {
+    SetVideoId(videoId);
   };
 
   return (
@@ -216,23 +226,32 @@ export default function Activity() {
                 <div>
                   <div className="icerik-detail">
                     <Row className="justify-content-end flex-row-reverse">
-                      <VideoDetails />
+                      <VideoDetails videoId={videoId} />
                       {/* Buraya aşağıda listeleyeceğimiz kurslardan hangisine tıklarsak onun id sini göndereceğiz 
                           VideoDetails içinde o id yi yakalayıp getbyid olan apiye istek atacağız
                           gelen verideki bilgileri o kısıma yazdıracağız
                       */}
                       <Col className="custom-left">
                         <div className="scrollable-div">
-                          {names.map((item: any, index: any) => (
-                            <div key={index} className="mx-4 mt-3">
-                              <Link to="#">
-                                <div className="accordion-subtitle">
-                                  <p className="subtitle-detail left-menu-link-import">
-                                    {item}
-                                  </p>
-                                </div>
-                              </Link>
-                            </div>
+                          {courseContent.map((item: any, index: any) => (
+                            <>
+                              <table
+                                key={index}
+                                className="table table-hover table-light"
+                              >
+                                <tr>
+                                  <div className="mx-4 mt-3">
+                                    <div onClick={() => SetVideoId(item.id)}>
+                                      <div>
+                                        <p className="subtitle-detail left-menu-link-import">
+                                          {item.name}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </tr>
+                              </table>
+                            </>
                           ))}
                         </div>
                       </Col>
@@ -240,7 +259,6 @@ export default function Activity() {
                   </div>
                 </div>
               )}
-              {activeTab === "hakkinda" && <ActivityAbout />}
               {} {activeTab === "soru" && <div>Soru Sor & Paylaş Bölümü</div>}
             </div>
           </div>

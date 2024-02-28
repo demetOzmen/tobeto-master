@@ -8,26 +8,21 @@ export default function Settings() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleChangePasswordClick = () => {
-    // Şifre değiştirme işlemi
-  };
+  const handleChangePasswordClick = () => {};
   console.log(currentPassword, newPassword, confirmPassword);
   if (newPassword === confirmPassword) {
-    // API çağrısı yapılır...
   } else {
     alert("Yeni şifreler uyuşmuyor!");
   }
 
-  const handleCancelMembershipClick = () => {
-    // Üyeliği sonlandırma işlemi
-  };
+  const handleCancelMembershipClick = () => {};
   return (
     <Container>
       <Row>
-        <Col  md={3} sm={12}>
+        <Col md={3} sm={12}>
           <Menu />
         </Col>
-        <Col  md={9} sm={12}>
+        <Col md={9} sm={12}>
           <Row>
             <Col md={4} sm={12}>
               <div className="input-group">
@@ -36,7 +31,7 @@ export default function Settings() {
                   type="password"
                   id="current-password"
                   placeholder="Eski Şifre"
-                  value={currentPassword} // input değeri
+                  value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                 />
               </div>
@@ -53,7 +48,7 @@ export default function Settings() {
                 />
               </div>
             </Col>
-            <Col  md={4} sm={12}>
+            <Col md={4} sm={12}>
               <div className="input-group">
                 <label htmlFor="confirm-password">Yeni Şifre Tekrar*</label>
                 <input
@@ -66,7 +61,7 @@ export default function Settings() {
               </div>
             </Col>
           </Row>
-          <Row >
+          <Row>
             <Col md={6} sm={12}>
               <button
                 className="btn-psw btn-psw-change-password "

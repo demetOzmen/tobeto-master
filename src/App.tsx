@@ -39,7 +39,7 @@ function App() {
           element={
             <>
               <Navi />
-              <Platform />
+              <Login/>
               <Footer />
             </>
           }

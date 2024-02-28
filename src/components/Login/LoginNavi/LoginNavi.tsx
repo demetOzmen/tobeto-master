@@ -72,6 +72,9 @@ export default function LoginNavi() {
                   </Link>
                 </Nav>
               </Navbar.Collapse>
+              <Link to="/login">
+                <button className="login-button">Giriş Yap</button>
+              </Link>
               <Link to="/register">
                 <button className="wave-button">Ücretsiz Üye Ol</button>
               </Link>

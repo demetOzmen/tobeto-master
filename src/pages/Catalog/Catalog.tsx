@@ -556,7 +556,7 @@ export default function Catalog() {
       <Col lg={7} md={12}>
         <Row>
           <Col lg={4} md={6} sm={12} className="mb-4">
-            <Card
+            <Card className="ct-card"
               style={{
                 width: "18rem",
                 cursor: "pointer",

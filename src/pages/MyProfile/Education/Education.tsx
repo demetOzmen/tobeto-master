@@ -65,10 +65,8 @@ export default function Education() {
       graduationYearDate &&
       startYearDate > graduationYearDate
     ) {
-      // Hata mesajını ayarla
       setError("Başlangıç yılı mezuniyet yılından sonra olamaz.");
     } else {
-      // Hata mesajını temizle
       setError("");
     }
   };
@@ -245,14 +243,22 @@ export default function Education() {
                     </div>
                   </div>
                   <Row>
-                    <Col md={5} xs={12} className="education-university ed-head">
+                    <Col
+                      md={5}
+                      xs={12}
+                      className="education-university ed-head"
+                    >
                       Üniversite
                     </Col>
-                    <Col md={7} sm={12} className="education-department ed-head ed-dep-head">
+                    <Col
+                      md={7}
+                      sm={12}
+                      className="education-department ed-head ed-dep-head"
+                    >
                       Bölüm
                     </Col>
                   </Row>
-                  <Row >
+                  <Row>
                     <Col md={5} sm={12}>
                       <div className="education-university ed-sub">
                         {edu.university}

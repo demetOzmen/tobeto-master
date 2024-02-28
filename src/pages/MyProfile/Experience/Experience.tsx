@@ -61,16 +61,20 @@ export default function Experience() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  
+
     // İş bitiş tarihi kontrolü: Başlangıç tarihi bitiş tarihinden sonra olamaz
-    if (currentExperience.startDate && currentExperience.endDate && currentExperience.startDate > currentExperience.endDate) {
-      setError('İş bitişi, başlangıcından önce bir tarih olamaz.');
+    if (
+      currentExperience.startDate &&
+      currentExperience.endDate &&
+      currentExperience.startDate > currentExperience.endDate
+    ) {
+      setError("İş bitişi, başlangıcından önce bir tarih olamaz.");
       return; // Formun gönderilmesini engelleyin ve işlemi burada sonlandırın
     }
-  
+
     // Tarihler geçerliyse deneyimi listeye ekleyin
     setExperiences([...experiences, currentExperience]);
-  
+
     // Mevcut deneyim formunu temizleyin
     setCurrentExperience({
       companyName: "",
@@ -82,11 +86,10 @@ export default function Experience() {
       isCurrent: false,
       description: "",
     });
-  
+
     // Hata mesajını temizleyin
-    setError('');
+    setError("");
   };
-  
 
   const handleDeleteExperience = (index: number) => {
     // Create a new array without the item at the provided index
@@ -178,17 +181,13 @@ export default function Experience() {
   ];
 
   const [showModal, setShowModal] = useState(false);
-
-  // Modal'ı aç
   const handleOpenModal = () => setShowModal(true);
-
-  // Modal'ı kapat
   const handleCloseModal = () => setShowModal(false);
 
   return (
-    <Container >
+    <Container>
       <Row>
-        <Col  md={3} sm={12}>
+        <Col md={3} sm={12}>
           <Menu />
         </Col>
         <Col className="experience-cont" md={9} sm={12}>
@@ -387,7 +386,11 @@ export default function Experience() {
                     </Modal.Header>
                     <Modal.Body>{exp.description}</Modal.Body>
                     <Modal.Footer>
-                      <Button variant="secondary" className="button-exp" onClick={handleCloseModal}>
+                      <Button
+                        variant="secondary"
+                        className="button-exp"
+                        onClick={handleCloseModal}
+                      >
                         Kapat
                       </Button>
                     </Modal.Footer>

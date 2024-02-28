@@ -17,7 +17,7 @@ export const loginUser = createAsyncThunk(
   async (userCredentials: UserCredentials, thunkAPI) => {
     try {
       const response: AxiosResponse<any> = await axios.post(
-        "https://localhost:44340/api/Auth/login",
+        "https://localhost:7260/api/Auth/login",
         userCredentials
       );
       const responseData = response.data.data;

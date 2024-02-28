@@ -66,8 +66,11 @@
 }
 
 .wave-button {
+  height: 35px;
+  width: 130px !important;
   animation: wave 2s linear infinite;
-  border-radius: 24px;
+  border-radius: 30px;
+  padding: 0;
 }
 
 .wave-button:hover {
@@ -93,4 +96,16 @@
   100% {
     background-position: -200% center;
   }
+}
+
+.login-button {
+box-shadow: none;
+background-color:rgb(50, 50, 50) ;
+background-image: linear-gradient(rgb(89, 88, 88), rgb(0, 0, 0));
+border-radius: 30px;
+border: 1px solid white;
+margin-right: 8px;
+color:#fff;
+height: 32px;
+width: 90px;
 }

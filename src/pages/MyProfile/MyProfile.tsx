@@ -188,26 +188,27 @@ export default function MyProfile() {
               <div>
                 <Row className="about-me-r1">Yetkinlik Rozetlerim</Row>
                 <Row className="my-badges">
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
-                  <div className="my-badge bordered"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+                  <div className="my-badge"></div>
+
                 </Row>
               </div>
             </Row>

@@ -147,12 +147,12 @@ export default function SocialMedia() {
 
   return (
     <>
-      <Container >
+      <Container>
         <Row>
-          <Col  md={3} sm={12}>
+          <Col md={3} sm={12}>
             <Menu />
           </Col>
-          <Col  md={9} sm={12}>
+          <Col md={9} sm={12}>
             <Form>
               <Row>
                 <Col md={4} sm={12}>

@@ -1,42 +1,50 @@
 import React, { useState, FormEvent } from "react";
-import "./Register.css";
-import { Button, Col, Image, Row } from "react-bootstrap";
+import { Button, Col, Form, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { loginUser, UserCredentials } from "../../store/reducers/userReducer";
-import tokenService from "../../core/services/tokenService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Action, ThunkDispatch } from "@reduxjs/toolkit";
+import { registerUser } from "../../store/reducers/registerReducer";
+import "./Register.css"
 
 export default function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  // Redux state
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
+  const [secondName, setSecondName] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
   const { loading, error } = useSelector((state: any) => state.user);
-
-  const dispatch = useDispatch();
+  const dispatch: ThunkDispatch<any, void, Action> = useDispatch();
   const navigate = useNavigate();
 
-  const handleLoginEvent = (e: FormEvent) => {
+  const handleRegister = (e: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
     e.preventDefault();
 
-    let userCredentials: UserCredentials = {
-      email: email, // Assuming email corresponds to the username
+    if (password.length < 8) {
+      setPasswordError("Şifre en az 8 karakter uzunluğunda olmalıdır.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setPasswordError("Şifre eşleşmiyor");
+      return;
+    }
+
+    let userData = {
+      email,
       password,
+      firstname: userName,
+      lastname: secondName,
+      confirmPassword: confirmPassword,
     };
 
-    dispatch(loginUser(userCredentials) as any).then((result: any) => {
-      if (result.payload) {
-        setEmail("");
-        setPassword("");
-        navigate("/");
+    let jsonUserData = JSON.stringify(userData);
+
+    dispatch(registerUser(jsonUserData)).then((result: any) => {
+      if (result.type == "user/registerUser/fulfilled") {
+        navigate("/login");
       }
     });
   };
-
   return (
     <>
       <Row className="p-5 mb-5">
@@ -45,7 +53,7 @@ export default function Register() {
           <div className="login-main ">
             <div className="login card-login-animation lf-out">
               <div className="form lf-in-area">
-                <form noValidate>
+              <form onSubmit={handleRegister}>
                   <Image
                     src="https://tobeto.com/_next/static/media/tobeto-logo.29b55e1c.svg"
                     width={"180px"}
@@ -58,8 +66,8 @@ export default function Register() {
                     placeholder="Name"
                     className="form-control inp_text"
                     id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                   />
                   <input
                     type="surname"
@@ -67,8 +75,8 @@ export default function Register() {
                     placeholder="Surname"
                     className="form-control inp_text"
                     id="surname"
-                    value={surname}
-                    onChange={(e) => setSurname(e.target.value)}
+                    value={secondName}
+                    onChange={(e) => setSecondName(e.target.value)}
                   />
                   <input
                     type="email"
@@ -89,17 +97,22 @@ export default function Register() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <input
-                    type="confirmPassword"
+                    type="Password"
                     name="confirmPassword"
                     placeholder="Confirm password"
                     className="form-control"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
+                  {passwordError && (
+                    <p className="alert alert-danger" role="alert">
+                      {passwordError}
+                    </p>
+                  )}
                   <br />
                   <button
+                  type="submit"
                     className="btn-rgst"
-                    onClick={handleLoginEvent}
                   >
                     Kayıt Ol
                   </button>
@@ -134,7 +147,7 @@ export default function Register() {
                   <Button className=" rt-btn">Başvur</Button>
                   <img
             src="https://tobeto.com/_next/static/media/doth.d78dd392.svg" 
-            style={{ position: 'absolute', bottom: '15px', right: '15px', width: '70px' }} // Burada resmin boyutunu ve konumunu ayarlayın
+            style={{ position: 'absolute', bottom: '15px', right: '15px', width: '70px' }} 
           />
                 </div>
               </div>

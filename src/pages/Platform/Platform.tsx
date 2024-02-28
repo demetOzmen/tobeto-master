@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Platform.css";
 import { Welcome } from "../../components/Platform/Welcome";
@@ -9,12 +9,34 @@ import { SurveyTab } from "../../components/Platform/SurveyTab";
 import Exam from "../../components/Platform/Exam";
 import BottomThreeComponent from "../../components/Platform/BottomThreeComponent";
 import { ShowMore } from "../../components/Platform/ShowMore";
+import axios from "axios";
 
 export default function Platform() {
   const [activeTab, setActiveTab] = useState("basvurularim");
   const handleTabClick = (tab :any) => {
     setActiveTab(tab);
   };
+  const [firstName, setFirstName] = useState("");
+  const [secondName, setSecondName] = useState("");
+
+  useEffect(() => {
+    const userEmail = localStorage.getItem("userEmail");
+
+    if (userEmail) {
+      axios
+        .get (`https://localhost:7260/api/Users/GetByMail?email=${userEmail}`)
+        .then((response: any) => {
+          const userData = response.data;
+          setFirstName(userData.firstName);
+          setSecondName(userData.lastName);
+          localStorage.setItem("firstName", userData.firstName);
+          localStorage.setItem("secondName", userData.lastName);
+        })
+        .catch((error: any) => {
+          console.log("Error fetching user's first name:", error);
+        });
+    }
+  }, []);
   return (
     <>
       <Container className="container">

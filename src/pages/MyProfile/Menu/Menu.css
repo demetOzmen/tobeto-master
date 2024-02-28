@@ -1,59 +1,59 @@
 .menu {
-    padding: 15px 5px;
-    display: flex;
-    flex-direction: column;
+  padding: 15px 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu a {
+  padding: 10px;
+  color: rgb(68, 68, 68); 
+  text-decoration: none;
+}
+
+.menu .active {
+  color: purple; 
+  position: relative;
+}
+
+.menu .active::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 12px;
+  width: 2px;
+  height: 80%;
+  background-color: purple; 
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: row;
+    justify-content: space-around; 
   }
-  
+  .menu span {
+    display: none;
+  }
+
   .menu a {
-    padding: 10px;
-    color: rgb(68, 68, 68); /* Linklerin rengi */
-    text-decoration: none;
+    padding: 5px;
+    font-size: 0.8rem; 
   }
-  
-  .menu .active {
-    color: purple; /* Aktif linkin rengi */
-    position: relative;
-  }
-  
+
   .menu .active::after {
-    content: '';
+    content: "";
     position: absolute;
-    bottom: 0px;
-    right: 12px;
-    width: 2px;
-    height:80%;
-    background-color: purple; /* Gösterge çubuğunun rengi */
-    border-radius: 2px;
+    bottom: -10px; 
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%); 
+    width: 80%;
+    height: 2px; 
+    background-color: purple;
+    border-radius: 1px; 
   }
 
-  @media (max-width: 768px) { /* 768px altındaki ekran genişlikleri için */
-    .menu {
-      flex-direction: row;
-      justify-content: space-around; /* İçerikleri eşit olarak yay */
-    }
-    .menu span{
-        display: none;
-    }
-
-    .menu a {
-        padding: 5px; /* Yatay menü için padding'i azalt */
-        font-size: 0.8rem; /* Yatay menü için font boyutunu küçült */
-      }
-    
-      .menu .active::after {
-        content: '';
-        position: absolute;
-        bottom: -10px; /* Yatay çubuğu alt tarafa al */
-        right: auto; /* Sağ pozisyonunu kaldır */
-        left: 50%; /* Çubuğu bağlantının ortasına yerleştir */
-        transform: translateX(-50%); /* Çubuğu simetrik hale getir */
-        width: 80%; /* Çubuğun genişliğini ayarla */
-        height: 2px; /* Çubuğun yüksekliğini azalt */
-        background-color: purple; /* Gösterge çubuğunun rengi */
-        border-radius: 1px; /* Çubuğun köşe yuvarlaklığını ayarla */
-      }
-
-      .menu-icn{
-        width:28px;
-      }
-  }  
+  .menu-icn {
+    width: 28px;
+  }
+}

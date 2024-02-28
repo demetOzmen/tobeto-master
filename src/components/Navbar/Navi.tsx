@@ -1,11 +1,40 @@
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { Col, Image, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import React, { MouseEventHandler, useEffect, useState } from "react";
+import {
+  Col,
+  Container,
+  Image,
+  Nav,
+  NavDropdown,
+  Navbar,
+  Row,
+} from "react-bootstrap";
+import {  Link, NavLink, useNavigate } from "react-router-dom"; 
 import "../Navbar/Navi.css";
 
 export default function Navi() {
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const navigate = useNavigate();
+
+  
+  useEffect(() => {
+    const name = localStorage.getItem("firstName");
+    const lastName = localStorage.getItem("secondName");
+    console.log("Retrieved first name:", name);
+    console.log("Retrieved last name:", lastName);
+    if (name !== null && lastName !== null) {
+      setFirstName(name);
+      setLastName(lastName);
+    }
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("secondName");
+    navigate("/login");
+  };
   return (
     <Navbar expand="sm" className="bg-body-tertiary">
       <Link to="/Platform">
@@ -43,10 +72,13 @@ export default function Navi() {
           <Nav.Link className="text-dark ">
             <FontAwesomeIcon icon={faSave} style={{ color: "purple" }} />
           </Nav.Link>
-          <NavDropdown title="İsim Soyisim" id="profile-dropdown">
+          <NavDropdown title={`${firstName} ${lastName}`} id="profile-dropdown">
             <NavDropdown.Item>Profil Bilgileri</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item>Oturumu Kapat</NavDropdown.Item>
+            <NavDropdown.Item
+              onClick={handleLogout as MouseEventHandler<HTMLElement>}
+            >
+              Oturumu Kapat</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>

@@ -1,9 +1,31 @@
-import React from 'react'
+import axios from "axios";
 import { Col, Row } from 'react-bootstrap'
+import React, { useEffect, useState } from "react";
 
 type Props = {}
 
 export const Welcome = (props: Props) => {
+  const [firstName, setFirstName] = useState("");
+  const [secondName, setSecondName] = useState("");
+
+  useEffect(() => {
+    const userEmail = localStorage.getItem("userEmail");
+
+    if (userEmail) {
+      axios
+        .get (`https://localhost:7260/api/Users/GetByMail?email=${userEmail}`)
+        .then((response: any) => {
+          const userData = response.data;
+          setFirstName(userData.firstName);
+          setSecondName(userData.lastName);
+          localStorage.setItem("firstName", userData.firstName);
+          localStorage.setItem("secondName", userData.lastName);
+        })
+        .catch((error: any) => {
+          console.log("Error fetching user's first name:", error);
+        });
+    }
+  }, []);
   return (
     <>
     <Row className="welcome-row">
@@ -11,7 +33,7 @@ export const Welcome = (props: Props) => {
             <h1 className="welcome-header">
               TOBETO
               <span>
-                'ya hoş geldin <br></br> FirstName
+                'ya hoş geldin <br></br> {firstName}
               </span>
             </h1>
             <p className="welcome-subtext">

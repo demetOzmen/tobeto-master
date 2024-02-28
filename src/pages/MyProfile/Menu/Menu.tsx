@@ -37,7 +37,10 @@ const Menu = () => {
         to="/my-profile/editprofile/certificates"
         className={({ isActive }) => (isActive ? "active" : "")}
       >
-        <img className="menu-icn" src="https://tobeto.com/certificates.svg"></img>
+        <img
+          className="menu-icn"
+          src="https://tobeto.com/certificates.svg"
+        ></img>
         <span> &nbsp;&nbsp;&nbsp;Sertifikalarım</span>
       </NavLink>{" "}
       <NavLink

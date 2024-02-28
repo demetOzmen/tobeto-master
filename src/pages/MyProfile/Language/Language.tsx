@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Menu from "../Menu/Menu";
-import { FaTrash } from 'react-icons/fa';
-import './Language.css';
+import { FaTrash } from "react-icons/fa";
+import "./Language.css";
 
 type LanguageInfo = {
   language: string;
@@ -22,9 +22,9 @@ export default function Language() {
     setLevel(e.target.value);
   };
 
-const handleDelete = (index: number) => {
-  setLanguagesList(languagesList.filter((_, i) => index !== i));
-};
+  const handleDelete = (index: number) => {
+    setLanguagesList(languagesList.filter((_, i) => index !== i));
+  };
 
   const handleSave = () => {
     if (language && level) {
@@ -37,12 +37,12 @@ const handleDelete = (index: number) => {
   };
 
   return (
-    <Container >
+    <Container>
       <Row>
-        <Col  md={3} sm={12}>
+        <Col md={3} sm={12}>
           <Menu />
         </Col>
-        <Col  md={9} sm={12}>
+        <Col md={9} sm={12}>
           <Form>
             <Row>
               <Col>
@@ -54,7 +54,6 @@ const handleDelete = (index: number) => {
                     value={language}
                     onChange={handleLanguageChange}
                   >
-                    {/* Burada dil seçenekleriniz olacak */}
                     <option value="Dil Seçiniz">Dil Seçiniz</option>
                     <option value="english">İngilizce</option>
                     <option value="Almanca">Almanca</option>
@@ -93,7 +92,7 @@ const handleDelete = (index: number) => {
                     value={level}
                     onChange={handleLevelChange}
                   >
-                     <option value="choose-opt">Seviye Seçiniz</option>
+                    <option value="choose-opt">Seviye Seçiniz</option>
                     <option value="beginner">Başlangıç</option>
                     <option value="Temel Seviye ( A1 , A2)">
                       Temel Seviye ( A1 , A2)
@@ -111,7 +110,11 @@ const handleDelete = (index: number) => {
             </Row>
             <Row>
               <Col>
-                <Button className="lang-lvl-btn" variant="primary" onClick={handleSave}>
+                <Button
+                  className="lang-lvl-btn"
+                  variant="primary"
+                  onClick={handleSave}
+                >
                   Kaydet
                 </Button>
               </Col>
@@ -119,13 +122,21 @@ const handleDelete = (index: number) => {
           </Form>
           <Row>
             <Col>
-            {languagesList.map((item, index) => (
-          <Col key={index} md={12} className="language-item">
-            <img className="menu-icn" src="https://tobeto.com/globe.svg"></img>
-            <span className="lang-lvls">&nbsp;&nbsp;{item.language} - {item.level}</span>
-            <FaTrash className="lang-level-dlt" onClick={() => handleDelete(index)} />
-          </Col>
-        ))}
+              {languagesList.map((item, index) => (
+                <Col key={index} md={12} className="language-item">
+                  <img
+                    className="menu-icn"
+                    src="https://tobeto.com/globe.svg"
+                  ></img>
+                  <span className="lang-lvls">
+                    &nbsp;&nbsp;{item.language} - {item.level}
+                  </span>
+                  <FaTrash
+                    className="lang-level-dlt"
+                    onClick={() => handleDelete(index)}
+                  />
+                </Col>
+              ))}
             </Col>
           </Row>
         </Col>

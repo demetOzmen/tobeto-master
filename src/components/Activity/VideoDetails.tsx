@@ -1,53 +1,87 @@
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
-import OffCanvas from "../../pages/Activity/OffCanvas/OffCanvas";
+import axios from "axios";
 
-type Props = {};
+export const VideoDetails = ({ videoId }: any) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [videoDetails, setVideoDetails] = useState<any[]>([]);
 
-export const VideoDetails = (props: Props) => {
+  useEffect(() => {
+    if (!videoId) {
+      setLoading(false);
+      setError("Video seçiniz");
+      return;
+    }
+    const fetchVideoDetails = async () => {
+      try {
+        const response = await axios.get(
+          `https://localhost:7260/api/AsyncCourseContents/GetById?id=${videoId}`
+        );
+        const data = response.data;
+        if (data) {
+          // API'den gelen veriyi düzenleme
+          const videoDetail = {
+            id: data.id,
+            name: data.name,
+            url: data.url,
+            language: data.language,
+            category: data.category,
+            subtype: data.subtype,
+            producer: data.producer,
+            description: data.description,
+          };
+          setVideoDetails([videoDetail]);
+          setError(null);
+        } else {
+          setError("Video bilgileri bulunamadı.");
+        }
+      } catch (err) {
+        setError("Video bilgileri yüklenirken bir hata oluştu.");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideoDetails();
+  }, [videoId]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  if (!videoDetails || videoDetails.length === 0)
+    return <div>No video details available.</div>;
+
   return (
     <>
       <Col className="custom-right">
-        <div className="video-area-cont">
-          <Row className="video-area">
-            <div className="video-container">
-              <iframe
-                src="https://www.youtube.com/embed/Hgqqoycoh9c"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </Row>
-          <Row>
-            <Col>
-              <Row className="video-name">name</Row>
-              <Row className="video-time-detail">
-                <Col>title</Col>
-                <Col>100 puan</Col>
-                {/*burası kalsın şimdilik yeni tablo eklenmesi lazım */}
-                <Col className="ok-icon">
-                  <FontAwesomeIcon icon={faThumbsUp} />
-                  &nbsp;Tebrikler,&nbsp;&nbsp;&nbsp;tamamladın!
-                  {/*burası kalsın şimdilik yeni tablo eklenmesi lazım */}
-                </Col>
-              </Row>
-            </Col>
-
-            <Col className="video-detail-btn">
-              {/* buraya da apiden çektiğimiz verileri göndereceğiz ve oradaki alanları dolduracağız */}
-              <OffCanvas
-              /*className={
-                                  isOffCanvasOpen ? "offcanvas-open" : ""
-                                }
-                                showButton={showButton}
-                                setShowButton={setShowButton}*/
-              />
-            </Col>
-          </Row>
-        </div>
+        {videoDetails.map((item: any, index: any) => (
+          <div className="video-area-cont" key={index}>
+            <Row className="video-area">
+              <div className="video-container">
+                {/* Video iframe'i ve diğer detayları videoDetails'dan al */}
+                <iframe
+                  src={item.url}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </Row>
+            <Row>
+              <Col>
+                <Row className="video-name">{item.name}</Row>
+                {/* Diğer video detayları */}
+                <Row>{`Language: ${item.language}`}</Row>
+                <Row>{`Category: ${item.category}`}</Row>
+                <Row>{`Subtype: ${item.subtype}`}</Row>
+                <Row>{`Producer: ${item.producer}`}</Row>
+                <Row>{`Description: ${item.description}`}</Row>
+              </Col>
+              {/* Diğer içerikler... */}
+            </Row>
+          </div>
+        ))}
       </Col>
     </>
   );

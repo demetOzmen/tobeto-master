@@ -6,28 +6,34 @@ import { useNavigate, Link } from "react-router-dom";
 import { loginUser, UserCredentials } from "../../store/reducers/userReducer";
 import tokenService from "../../core/services/tokenService";
 
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isloading, setIsLoading] = useState(false);
 
   const { loading, error } = useSelector((state: any) => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLoginEvent = (e: FormEvent) => {
+  const handleLoginEvent = (e: MouseEvent | FormEvent): void => {
     e.preventDefault();
+    setIsLoading(true);
 
     let userCredentials: UserCredentials = {
-      email: email,
+      email: email, 
       password,
     };
 
     dispatch(loginUser(userCredentials) as any).then((result: any) => {
-      if (result.payload) {
-        setEmail("");
+      if (result.type == "user/loginUser/fulfilled") {
         setPassword("");
-        navigate("/");
+        navigate("/platform");
+        localStorage.setItem("userEmail", email);
+        console.log(result.type);
+      } else {
+        setIsLoading(false);
       }
     });
   };
@@ -68,9 +74,11 @@ export default function Login() {
                   <button
                     className="btn btn-primary w-100 mt-2"
                     onClick={handleLoginEvent}
+                    disabled={isloading}
                   >
-                    Login
+                    {loading ? "Logging in..." : "Login"}
                   </button>
+                  {error && <p className="text-danger">{error}</p>}
                 </form>
               </div>
             </div>

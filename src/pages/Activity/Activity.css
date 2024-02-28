@@ -84,10 +84,13 @@
 }
 
 .tag-blue {
-  margin-top: 25px;
-  margin-left: 10px;
+  margin-top: 5px;
+  margin-left: 0px;
+  line-height: 10px;
+  justify-content: right;
   background-color: #629cf9;
   color: white;
+  height: 30px;
   padding: 10px 10px;
   border-radius: 5px;
   display: inline-block;
